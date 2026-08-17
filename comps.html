@@ -1,0 +1,1251 @@
+<title>Aviation Dreamz Comps</title>
+<style>
+  /* ============================================================
+     SHELL — deliberately single-theme: a dark studio table so the
+     three comps read as prints laid out for review. Every color is
+     painted explicitly, so it holds on either host ground.
+     ============================================================ */
+  :root {
+    --shell-bg: #23221F;
+    --shell-panel: #2C2B27;
+    --shell-line: #3E3C36;
+    --shell-text: #E6E3DB;
+    --shell-dim: #A29D91;
+    --shell-accent: #D8C48A;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--shell-bg);
+    color: var(--shell-text);
+    font-family: "Segoe UI", Candara, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .masthead { display: flex; flex-direction: column; gap: 14px; max-width: 62ch; }
+  .masthead .eyebrow {
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.75rem;
+    color: var(--shell-accent);
+  }
+  .masthead h1 {
+    margin: 0;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .masthead p { margin: 0; color: var(--shell-dim); }
+  .masthead code {
+    font-family: Consolas, "Courier New", monospace;
+    color: var(--shell-text);
+    font-size: 0.9em;
+  }
+
+  /* --- comp frame --- */
+  .comp { display: flex; flex-direction: column; gap: 0; }
+
+  .comp-tab {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 0 4px 12px;
+  }
+  .comp-tab .letter {
+    font-family: "Bahnschrift SemiBold", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-size: 1.6rem;
+    color: var(--shell-accent);
+    line-height: 1;
+  }
+  .comp-tab .name {
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-size: 1.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .comp-tab .from { color: var(--shell-dim); font-size: 0.9rem; }
+
+  .stage {
+    border: 1px solid var(--shell-line);
+    overflow: hidden;
+  }
+
+  .comp-notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    padding: 22px 4px 0;
+    border-top: 0;
+  }
+  .note h4 {
+    margin: 0 0 8px;
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.7rem;
+    color: var(--shell-accent);
+    font-weight: 600;
+  }
+  .note p { margin: 0; font-size: 0.875rem; color: var(--shell-dim); line-height: 1.5; }
+  .note p strong { color: var(--shell-text); font-weight: 600; }
+
+  .swatches { display: flex; gap: 0; }
+  .swatches span {
+    flex: 1;
+    height: 34px;
+    display: block;
+    font-family: Consolas, monospace;
+    font-size: 0.5rem;
+    color: rgba(0,0,0,0.45);
+    padding: 3px 4px;
+    overflow: hidden;
+  }
+  .swatches span.dk { color: rgba(255,255,255,0.55); }
+
+  hr.rule { border: 0; border-top: 1px solid var(--shell-line); margin: 0; }
+
+  .closing { max-width: 62ch; display: flex; flex-direction: column; gap: 12px; }
+  .closing h2 {
+    margin: 0;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .closing p { margin: 0; color: var(--shell-dim); font-size: 0.95rem; }
+  .closing strong { color: var(--shell-text); }
+
+  /* ============================================================
+     COMP A — THE LOGBOOK
+     Ledger stock + aeronautical magenta. Courier as the ledger hand.
+     ============================================================ */
+  .lb {
+    --ledger: #D7DDD0;
+    --ink: #16202A;
+    --rule: #7FA39B;
+    --magenta: #C4267B;
+    --classd: #2E5C8A;
+    --amber: #D98A1F;
+    background: var(--ledger);
+    color: var(--ink);
+    font-family: Corbel, Candara, "Segoe UI", sans-serif;
+    padding: 0;
+  }
+  .lb-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 11px 26px;
+    border-bottom: 1px solid var(--ink);
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: 0.7rem;
+  }
+  .lb-bar .field { color: var(--classd); }
+  .lb-bar .total { font-family: "Courier New", monospace; letter-spacing: 0.04em; }
+  .lb-bar .total b { color: var(--magenta); font-size: 0.95rem; }
+
+  .lb-body { padding: 40px 26px 44px; display: grid; grid-template-columns: 74px 1fr; gap: 0 28px; }
+  .lb-gutter {
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+    color: var(--rule);
+    border-right: 1px solid var(--rule);
+    padding-top: 6px;
+  }
+  .lb-field { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+
+  .lb-table { width: 100%; border-collapse: collapse; font-family: "Courier New", monospace; font-size: 0.8125rem; }
+  .lb-table th {
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.625rem;
+    letter-spacing: 0.09em;
+    padding: 0 8px 5px 0;
+    border-bottom: 1.5px solid var(--ink);
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .lb-table td {
+    padding: 9px 8px 9px 0;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.35;
+    font-variant-numeric: tabular-nums;
+  }
+  .lb-table .num { text-align: right; padding-right: 14px; }
+  .lb-table tr.blank td { height: 38px; color: var(--magenta); }
+
+  .caret {
+    display: inline-block;
+    width: 8px;
+    height: 1.05em;
+    background: var(--magenta);
+    vertical-align: -0.18em;
+    animation: lb-blink 1.1s step-end infinite;
+  }
+  @keyframes lb-blink { 50% { opacity: 0; } }
+
+  .lb-head {
+    margin: 0;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 5.4vw, 3.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    max-width: 20ch;
+  }
+  .lb-head em { font-style: normal; color: var(--magenta); }
+
+  .lb-act { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .lb-cta {
+    display: inline-block;
+    background: var(--magenta);
+    color: #FFF;
+    text-decoration: none;
+    padding: 13px 26px;
+    border-radius: 999px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-size: 0.8rem;
+  }
+  .lb-act .meta { font-family: "Courier New", monospace; font-size: 0.75rem; color: var(--classd); }
+  .lb-act .meta b { color: var(--amber); }
+
+  .lb-slice { border-top: 1px solid var(--ink); padding: 26px; }
+  .lb-slice .leg {
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.65rem;
+    color: var(--rule);
+    margin-bottom: 12px;
+  }
+  .lb-slice .leg b { color: var(--ink); }
+
+  /* ============================================================
+     COMP B — THE ATTITUDE INDICATOR
+     Sky over ground, the instrument face as the layout spine.
+     ============================================================ */
+  .ai {
+    --sky: #35709B;
+    --sky-deep: #23506F;
+    --ground: #8E6234;
+    --ground-deep: #5F4022;
+    --placard: #F0EEE7;
+    --radium: #E8B54A;
+    position: relative;
+    background: var(--sky-deep);
+    color: var(--placard);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .ai-ball {
+    position: absolute;
+    inset: -40% -25%;
+    background:
+      linear-gradient(180deg, var(--sky-deep) 0%, var(--sky) 46%, var(--sky) 50%,
+        var(--ground) 50%, var(--ground) 54%, var(--ground-deep) 100%);
+    transform: rotate(-7deg);
+    z-index: 0;
+  }
+  .ai-horizon {
+    position: absolute;
+    left: -25%; right: -25%;
+    top: 50%;
+    height: 2px;
+    background: var(--placard);
+    transform: rotate(-7deg);
+    opacity: 0.9;
+    z-index: 1;
+  }
+  .ai-ticks {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 26px;
+    gap: 22px;
+    pointer-events: none;
+  }
+  .ai-ticks i {
+    display: block;
+    width: 1.5px;
+    background: var(--placard);
+    opacity: 0.75;
+  }
+  .ai-ticks i:nth-child(odd) { height: 10px; }
+  .ai-ticks i:nth-child(even) { height: 18px; }
+
+  .ai-inner { position: relative; z-index: 2; padding: 76px 30px 30px; }
+
+  .ai-tag {
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.68rem;
+    color: var(--radium);
+    margin: 0 0 14px;
+  }
+  .ai-head {
+    margin: 0 0 18px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(1.85rem, 4.6vw, 3.05rem);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    max-width: 24ch;
+    text-wrap: balance;
+    text-shadow: 0 1px 12px rgba(12, 30, 44, 0.5);
+  }
+  .ai-sub {
+    margin: 0 0 26px;
+    max-width: 46ch;
+    font-size: 0.95rem;
+    color: #DCE6EC;
+    text-shadow: 0 1px 8px rgba(12, 30, 44, 0.55);
+  }
+  .ai-cta {
+    display: inline-block;
+    border: 1.5px solid var(--placard);
+    color: var(--placard);
+    background: rgba(15, 33, 47, 0.35);
+    text-decoration: none;
+    padding: 12px 24px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.78rem;
+  }
+  .ai-readout {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    border-top: 1.5px solid rgba(240, 238, 231, 0.55);
+    background: rgba(14, 28, 39, 0.62);
+  }
+  .ai-readout div { padding: 15px 20px; border-right: 1px solid rgba(240, 238, 231, 0.22); }
+  .ai-readout div:last-child { border-right: 0; }
+  .ai-readout dt {
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.6rem;
+    color: #A9C2D2;
+    margin: 0 0 5px;
+  }
+  .ai-readout dd {
+    margin: 0;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 1.4rem;
+    color: var(--radium);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .ai-readout dd small { font-size: 0.6rem; color: #A9C2D2; letter-spacing: 0.1em; }
+
+  /* ============================================================
+     COMP C — THE SHIRTTAIL WALL
+     The first-solo tradition: the CFI cuts the back of your shirt.
+     ============================================================ */
+  .st {
+    --wall: #B4AEA1;
+    --wall-dark: #9A9488;
+    --denim: #3B5876;
+    --marker: #1D1C1A;
+    --sharpie: #A8322A;
+    --kraft: #C4A067;
+    background: var(--wall);
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.055) 0 1px,
+      rgba(255,255,255,0.05) 1px 3px,
+      rgba(0,0,0,0) 3px 26px
+    );
+    color: var(--marker);
+    font-family: Corbel, "Segoe UI", sans-serif;
+    padding: 34px 30px 30px;
+  }
+  .st-tag {
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.68rem;
+    color: #5E5A51;
+    margin: 0 0 12px;
+  }
+  .st-head {
+    margin: 0 0 10px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(1.85rem, 4.8vw, 3.1rem);
+    line-height: 0.97;
+    letter-spacing: -0.015em;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .st-sub { margin: 0 0 30px; max-width: 50ch; color: #46433C; font-size: 0.95rem; }
+  .st-sub b { color: var(--marker); }
+
+  .st-wall { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 30px; }
+  .st-cut {
+    position: relative;
+    width: 178px;
+    min-height: 132px;
+    padding: 26px 16px 16px;
+    background: #E9E5DA;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.14), 0 7px 16px rgba(0,0,0,0.16);
+    /* torn hem along the bottom */
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 88% 96%, 74% 88%, 60% 97%, 46% 88%, 31% 96%, 17% 89%, 0 96%);
+  }
+  .st-cut.denim { background: var(--denim); color: #EDF1F5; }
+  .st-cut.plaid {
+    background: #C9552F;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0 7px, transparent 7px 21px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.16) 0 7px, transparent 7px 21px);
+    color: #FBEFE6;
+  }
+  .st-cut .pin {
+    position: absolute;
+    top: 9px; left: 50%;
+    width: 11px; height: 11px;
+    margin-left: -5.5px;
+    border-radius: 50%;
+    background: var(--sharpie);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+  .st-cut .who {
+    font-family: "Ink Free", "Segoe Script", "Bradley Hand", cursive;
+    font-size: 1.25rem;
+    line-height: 1.15;
+    margin: 0 0 6px;
+  }
+  .st-cut .when {
+    font-family: "Ink Free", "Segoe Script", "Bradley Hand", cursive;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin: 0;
+  }
+  .st-cut.blank {
+    background: transparent;
+    border: 2px dashed #85806F;
+    box-shadow: none;
+    clip-path: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #5E5A51;
+  }
+  .st-cut.blank .who { font-family: Corbel, sans-serif; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .st-cut.blank .when { font-family: Corbel, sans-serif; font-size: 0.8rem; }
+
+  .st-act { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .st-cta {
+    display: inline-block;
+    background: var(--kraft);
+    color: #2A2115;
+    text-decoration: none;
+    padding: 13px 26px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.22);
+  }
+  .st-act .meta { font-size: 0.8rem; color: #46433C; font-family: Consolas, monospace; }
+
+  /* ============================================================
+     COMP D — THE CHECKLIST
+     Challenge–response, dotted leaders, laminated card stock.
+     ============================================================ */
+  .ck {
+    --laminate: #EFF1EF;
+    --sheen: #D3D8D4;
+    --black: #191A1A;
+    --red: #C0342F;
+    --tab: #E4C23A;
+    --grey: #6B716D;
+    background: var(--laminate);
+    color: var(--black);
+    font-family: "Franklin Gothic Book", "Franklin Gothic Medium", Corbel, sans-serif;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+  }
+  .ck-coil {
+    background: var(--sheen);
+    border-right: 1px solid #B9BFBA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 0;
+  }
+  .ck-coil i {
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    background: var(--laminate);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.35);
+    flex: none;
+  }
+  .ck-main { padding: 24px 28px 28px; min-width: 0; }
+
+  .ck-tab {
+    display: inline-block;
+    background: var(--tab);
+    color: var(--black);
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.68rem;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+  }
+  .ck-head {
+    margin: 0 0 22px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(1.8rem, 4.4vw, 2.9rem);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    max-width: 24ch;
+    text-wrap: balance;
+  }
+  .ck-list { list-style: none; margin: 0 0 26px; padding: 0; max-width: 54ch; }
+  .ck-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(25,26,26,0.09);
+    text-transform: uppercase;
+  }
+  .ck-list li .lead {
+    flex: 1;
+    border-bottom: 1.5px dotted var(--grey);
+    transform: translateY(-0.28em);
+    min-width: 20px;
+  }
+  .ck-list li .resp { font-weight: 700; white-space: nowrap; }
+  .ck-list li.you { color: var(--red); }
+  .ck-list li.you .lead { border-bottom-color: var(--red); opacity: 0.6; }
+
+  .ck-act { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .ck-cta {
+    display: inline-block;
+    background: var(--red);
+    color: #FFF;
+    text-decoration: none;
+    padding: 13px 26px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 0.8rem;
+  }
+  .ck-act .meta { font-family: Consolas, monospace; font-size: 0.75rem; color: var(--grey); }
+
+  /* ============================================================
+     COMP E — THE WEATHER BRIEF
+     Coded METAR decoded in place. Flight-category color is the
+     real standardized set, not a decorative palette.
+     ============================================================ */
+  .wx {
+    --brief: #E4E7E6;
+    --brief-dk: #CFD4D3;
+    --slate: #1C2426;
+    --vfr: #2E7D5B;
+    --mvfr: #2F6FA8;
+    --ifr: #B3372F;
+    --lifr: #8E3C74;
+    background: var(--brief);
+    color: var(--slate);
+    font-family: Corbel, "Segoe UI", sans-serif;
+  }
+  .wx-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    background: var(--slate);
+    color: var(--brief);
+    padding: 9px 26px;
+    font-family: Consolas, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+  .wx-chip {
+    display: inline-block;
+    background: var(--vfr);
+    color: #FFF;
+    padding: 3px 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+  .wx-main { padding: 32px 26px 30px; }
+
+  .wx-code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: clamp(0.8rem, 2.1vw, 1.15rem);
+    letter-spacing: 0.01em;
+    line-height: 1.9;
+    margin: 0 0 6px;
+    word-spacing: 0.35em;
+    color: var(--slate);
+  }
+  .wx-code b { background: rgba(46,125,91,0.18); font-weight: 700; padding: 1px 2px; }
+  .wx-decode {
+    font-family: Consolas, monospace;
+    font-size: 0.7rem;
+    color: #5A6466;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0 0 28px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--brief-dk);
+  }
+  .wx-head {
+    margin: 0 0 16px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.85rem, 4.5vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    max-width: 26ch;
+    text-wrap: balance;
+  }
+  .wx-head em { font-style: normal; color: var(--vfr); }
+  .wx-sub { margin: 0 0 26px; max-width: 52ch; color: #454E50; font-size: 0.95rem; }
+
+  .wx-act { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 30px; }
+  .wx-cta {
+    display: inline-block;
+    background: var(--vfr);
+    color: #FFF;
+    text-decoration: none;
+    padding: 13px 26px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+  }
+  .wx-act .meta { font-family: Consolas, monospace; font-size: 0.75rem; color: #5A6466; }
+
+  .wx-year { border-top: 1px solid var(--brief-dk); padding-top: 20px; }
+  .wx-year h4 {
+    margin: 0 0 12px;
+    font-family: "Bahnschrift Condensed", "Bahnschrift", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.66rem;
+    color: #5A6466;
+    font-weight: 600;
+  }
+  .wx-bars { display: flex; gap: 3px; align-items: flex-end; height: 46px; }
+  .wx-bars i { flex: 1; background: var(--vfr); display: block; height: 100%; }
+  .wx-bars i.m { background: var(--mvfr); height: 70%; }
+  .wx-bars i.f { background: var(--ifr); height: 42%; }
+  .wx-bars i.l { background: var(--lifr); height: 28%; }
+  .wx-legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-family: Consolas, monospace;
+    font-size: 0.65rem;
+    color: #5A6466;
+    letter-spacing: 0.05em;
+  }
+  .wx-legend span { display: flex; align-items: center; gap: 5px; }
+  .wx-legend b { width: 9px; height: 9px; display: block; }
+
+  /* ============================================================
+     COMP F — AIRPORT SIGNAGE
+     FAA sign spec is a fixed legal vocabulary: red = hold short,
+     yellow = direction, black = where you are. Used as wayfinding.
+     ============================================================ */
+  .sg {
+    --apron: #3C3E3B;
+    --apron-lt: #4A4C48;
+    --signblack: #121312;
+    --signyellow: #F0C000;
+    --signred: #A81E17;
+    --signwhite: #F7F6F1;
+    background: var(--apron);
+    background-image: repeating-linear-gradient(
+      90deg, rgba(0,0,0,0.16) 0 2px, transparent 2px 118px);
+    color: var(--signwhite);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    padding: 32px 28px;
+  }
+  .sg-signs { display: flex; gap: 14px; flex-wrap: wrap; align-items: stretch; margin-bottom: 28px; }
+  .sg-sign {
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 22px;
+    font-size: 1.5rem;
+    line-height: 1;
+    border: 3px solid var(--signyellow);
+    background: var(--signblack);
+    color: var(--signwhite);
+    box-shadow: 0 5px 0 rgba(0,0,0,0.32);
+  }
+  .sg-sign.hold {
+    background: var(--signred);
+    border-color: var(--signwhite);
+    color: var(--signwhite);
+    font-size: 1.75rem;
+    letter-spacing: 0.06em;
+  }
+  .sg-sign.dir {
+    background: var(--signyellow);
+    border-color: var(--signblack);
+    color: var(--signblack);
+    font-size: 1.25rem;
+    gap: 8px;
+  }
+  .sg-head {
+    margin: 0 0 14px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", "Franklin Gothic Medium", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(1.9rem, 4.8vw, 3.15rem);
+    line-height: 0.96;
+    letter-spacing: -0.015em;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .sg-head em { font-style: normal; color: var(--signyellow); }
+  .sg-sub { margin: 0 0 26px; max-width: 50ch; color: #C9CBC5; font-size: 0.95rem; }
+  .sg-act { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .sg-cta {
+    display: inline-block;
+    background: var(--signyellow);
+    color: var(--signblack);
+    text-decoration: none;
+    padding: 14px 26px;
+    font-family: "Bahnschrift SemiCondensed", "Bahnschrift", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.82rem;
+    border: 2px solid var(--signblack);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.35);
+  }
+  .sg-act .meta { font-family: Consolas, monospace; font-size: 0.75rem; color: #C9CBC5; }
+
+  /* --- shared a11y / motion --- */
+  a:focus-visible, .stage a:focus-visible {
+    outline: 3px solid #F2D06B;
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .caret { animation: none; }
+    * { transition: none !important; }
+  }
+  @media (max-width: 640px) {
+    .lb-body { grid-template-columns: 1fr; gap: 22px; }
+    .lb-gutter { border-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 8px; }
+    .lb-table { font-size: 0.7rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">Aviation Dreamz · discovery-flight landing page</span>
+    <h1>Six directions, each drawn from a different artifact of flight training</h1>
+    <p>Same subject, same job — get an adult who has wanted to fly since childhood to book a
+      discovery flight. Each comp below is the hero plus one slice of what follows, at real
+      size and real type. Reply with a letter, <code>A</code> through <code>F</code>, and I'll
+      build it out.</p>
+  </header>
+
+  <hr class="rule" />
+
+  <!-- ============ A ============ -->
+  <section class="comp">
+    <div class="comp-tab">
+      <span class="letter">A</span>
+      <span class="name">The Logbook</span>
+      <span class="from">from the pilot's logbook — the one document that never resets</span>
+    </div>
+
+    <div class="stage lb">
+      <div class="lb-bar">
+        <span>Aviation Dreamz</span>
+        <span class="field">KFXE · RWY 26L · Part 61</span>
+        <span class="total">TOTAL <b>0.0</b></span>
+      </div>
+
+      <div class="lb-body">
+        <div class="lb-gutter">Page 1<br />of yours</div>
+        <div class="lb-field">
+          <table class="lb-table">
+            <thead>
+              <tr>
+                <th>Date</th><th>Aircraft</th><th>Route</th>
+                <th class="num">Dual</th><th class="num">PIC</th><th class="num">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="blank">
+                <td><span class="caret"></span></td>
+                <td></td><td></td>
+                <td class="num">—</td><td class="num">—</td><td class="num">—</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 class="lb-head">Your first row is blank. <em>We fill it Saturday.</em></h2>
+
+          <div class="lb-act">
+            <a class="lb-cta" href="#book">Book a discovery flight — $149</a>
+            <span class="meta">0.8 hrs logged, yours to keep · <b>39.2 to go</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lb-slice">
+        <p class="leg">Leg 03 — <b>The fleet</b> · wet rates, no membership</p>
+        <table class="lb-table">
+          <tbody>
+            <tr><td>N4172P</td><td>C172S</td><td>180 hp · G1000</td><td class="num">$165/hr</td></tr>
+            <tr><td>N738KW</td><td>C152</td><td>110 hp · analog</td><td class="num">$129/hr</td></tr>
+            <tr><td>N91243</td><td>PA-28-181</td><td>180 hp · Archer</td><td class="num">$158/hr</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="comp-notes">
+      <div class="note">
+        <h4>Palette</h4>
+        <div class="swatches">
+          <span style="background:#D7DDD0">D7DDD0</span>
+          <span class="dk" style="background:#16202A">16202A</span>
+          <span style="background:#7FA39B">7FA39B</span>
+          <span class="dk" style="background:#C4267B">C4267B</span>
+          <span class="dk" style="background:#2E5C8A">2E5C8A</span>
+          <span style="background:#D98A1F">D98A1F</span>
+        </div>
+      </div>
+      <div class="note">
+        <h4>Type</h4>
+        <p><strong>Bahnschrift Condensed</strong> caps for display, set at runway-numeral scale ·
+          <strong>Corbel</strong> for body · <strong>Courier</strong> for every logbook entry.</p>
+      </div>
+      <div class="note">
+        <h4>The risk</h4>
+        <p>Aeronautical magenta — the sectional chart's own color for controlled airspace, and
+          nobody's default web accent. Plus typewriter mono in a load-bearing role.</p>
+      </div>
+      <div class="note">
+        <h4>Signature</h4>
+        <p>The total in the bar counts up as you scroll — 0.0 at the hero, 61.4 by the totals
+          row. The page fills a logbook while you read it.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ============ B ============ -->
+  <section class="comp">
+    <div class="comp-tab">
+      <span class="letter">B</span>
+      <span class="name">The Attitude Indicator</span>
+      <span class="from">from the instrument panel — sky over ground, the first thing you learn to read</span>
+    </div>
+
+    <div class="stage ai">
+      <div class="ai-ball"></div>
+      <div class="ai-horizon"></div>
+      <div class="ai-ticks">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+
+      <div class="ai-inner">
+        <p class="ai-tag">Bank 7° left · correcting</p>
+        <h2 class="ai-head">Straight and level is a skill. It takes about six hours.</h2>
+        <p class="ai-sub">Nobody flies level on the first try. You'll chase the horizon, overcorrect,
+          and then one afternoon your instructor stops talking because there's nothing left to say.</p>
+        <a class="ai-cta" href="#book">Book a discovery flight — $149</a>
+      </div>
+
+      <dl class="ai-readout">
+        <div><dt>Hours to first solo</dt><dd>18.4</dd></div>
+        <div><dt>Typical PPL, all in</dt><dd>$12,840</dd></div>
+        <div><dt>Instructors</dt><dd>4 <small>CFI / CFII</small></dd></div>
+        <div><dt>Next open Saturday</dt><dd>Aug 23</dd></div>
+      </dl>
+    </div>
+
+    <div class="comp-notes">
+      <div class="note">
+        <h4>Palette</h4>
+        <div class="swatches">
+          <span class="dk" style="background:#23506F">23506F</span>
+          <span class="dk" style="background:#35709B">35709B</span>
+          <span class="dk" style="background:#8E6234">8E6234</span>
+          <span class="dk" style="background:#5F4022">5F4022</span>
+          <span style="background:#F0EEE7">F0EEE7</span>
+          <span style="background:#E8B54A">E8B54A</span>
+        </div>
+      </div>
+      <div class="note">
+        <h4>Type</h4>
+        <p><strong>Bahnschrift SemiCondensed</strong> caps for display · <strong>Segoe UI</strong>
+          for body · <strong>Consolas</strong> for the panel readouts, tabular-aligned.</p>
+      </div>
+      <div class="note">
+        <h4>The risk</h4>
+        <p>The whole ground plane is tilted 7° and stays tilted. Committing to an off-axis
+          horizon means every section below has to live with it.</p>
+      </div>
+      <div class="note">
+        <h4>Signature</h4>
+        <p>The horizon levels out as you scroll — 7° of bank at the hero, dead level by the
+          booking form. One scroll-linked rotation, nothing else moves.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ============ C ============ -->
+  <section class="comp">
+    <div class="comp-tab">
+      <span class="letter">C</span>
+      <span class="name">The Shirttail Wall</span>
+      <span class="from">from the tradition — your instructor cuts the back of your shirt after your first solo</span>
+    </div>
+
+    <div class="stage st">
+      <p class="st-tag">Hangar 4 · the wall by the dispatch desk</p>
+      <h2 class="st-head">First solo. Then we cut your shirt.</h2>
+      <p class="st-sub">It's a real tradition: the instructor sits in the back seat until you don't
+        need them, then cuts off your shirttail and pins it to the wall. <b>Forty-one on the wall
+        so far.</b> Three of them soloed this summer.</p>
+
+      <div class="st-wall">
+        <div class="st-cut denim"><span class="pin"></span>
+          <p class="who">Priya R.</p><p class="when">14 Jun · 3 laps 26L</p>
+        </div>
+        <div class="st-cut"><span class="pin"></span>
+          <p class="who">Marcus O.</p><p class="when">2 Jul · greased it</p>
+        </div>
+        <div class="st-cut plaid"><span class="pin"></span>
+          <p class="who">Dee Whitlock</p><p class="when">9 Aug · age 58</p>
+        </div>
+        <div class="st-cut blank">
+          <p class="who">Your name here</p>
+          <p class="when">Pinned the day you solo. Usually 4–6 months in.</p>
+        </div>
+      </div>
+
+      <div class="st-act">
+        <a class="st-cta" href="#book">Book a discovery flight — $149</a>
+        <span class="meta">Saturdays fill first · Sundays wide open</span>
+      </div>
+    </div>
+
+    <div class="comp-notes">
+      <div class="note">
+        <h4>Palette</h4>
+        <div class="swatches">
+          <span style="background:#B4AEA1">B4AEA1</span>
+          <span class="dk" style="background:#3B5876">3B5876</span>
+          <span class="dk" style="background:#1D1C1A">1D1C1A</span>
+          <span class="dk" style="background:#A8322A">A8322A</span>
+          <span style="background:#C4A067">C4A067</span>
+          <span style="background:#E9E5DA">E9E5DA</span>
+        </div>
+      </div>
+      <div class="note">
+        <h4>Type</h4>
+        <p><strong>Bahnschrift SemiCondensed</strong> caps for display · <strong>Corbel</strong>
+          for body · <strong>Ink Free</strong> handwriting for every name on the wall.</p>
+      </div>
+      <div class="note">
+        <h4>The risk</h4>
+        <p>A handwriting face and real torn-fabric hems. Faux-material texture goes wrong fast,
+          so the wall is the only textured thing on the page.</p>
+      </div>
+      <div class="note">
+        <h4>Signature</h4>
+        <p>The wall is the whole page — every section is another pinned cut, and the booking
+          form is the empty one with your name on it.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ============ D ============ -->
+  <section class="comp">
+    <div class="comp-tab">
+      <span class="letter">D</span>
+      <span class="name">The Checklist</span>
+      <span class="from">from the laminated card — challenge, then response, out loud, every flight</span>
+    </div>
+
+    <div class="stage ck">
+      <div class="ck-coil"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="ck-main">
+        <span class="ck-tab">Discovery flight · before start</span>
+        <h2 class="ck-head">You'll run the checklist yourself. Out loud. On day one.</h2>
+
+        <ul class="ck-list">
+          <li><span>Preflight walkaround</span><span class="lead"></span><span class="resp">With your instructor</span></li>
+          <li><span>Left seat</span><span class="lead"></span><span class="resp">Yours</span></li>
+          <li><span>Seat, belts</span><span class="lead"></span><span class="resp">Adjusted, locked</span></li>
+          <li><span>Throttle</span><span class="lead"></span><span class="resp">Your right hand</span></li>
+          <li><span>Radio call</span><span class="lead"></span><span class="resp">We'll make the first one</span></li>
+          <li class="you"><span>Takeoff roll</span><span class="lead"></span><span class="resp">You fly it</span></li>
+          <li><span>Landing</span><span class="lead"></span><span class="resp">Hands on, ours too</span></li>
+          <li><span>Logbook</span><span class="lead"></span><span class="resp">0.8 signed, yours</span></li>
+        </ul>
+
+        <div class="ck-act">
+          <a class="ck-cta" href="#book">Book a discovery flight — $149</a>
+          <span class="meta">90 min on the ground and in the air</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-notes">
+      <div class="note">
+        <h4>Palette</h4>
+        <div class="swatches">
+          <span style="background:#EFF1EF">EFF1EF</span>
+          <span style="background:#D3D8D4">D3D8D4</span>
+          <span class="dk" style="background:#191A1A">191A1A</span>
+          <span class="dk" style="background:#C0342F">C0342F</span>
+          <span style="background:#E4C23A">E4C23A</span>
+          <span class="dk" style="background:#6B716D">6B716D</span>
+        </div>
+      </div>
+      <div class="note">
+        <h4>Type</h4>
+        <p><strong>Bahnschrift SemiCondensed</strong> caps for display · <strong>Franklin Gothic</strong>
+          for body · <strong>Consolas</strong> with dotted leaders for every checklist line.</p>
+      </div>
+      <div class="note">
+        <h4>The risk</h4>
+        <p>The dotted leader carries the whole layout. If the two columns don't align perfectly at
+          every width it stops reading as a checklist and starts reading as a broken table.</p>
+      </div>
+      <div class="note">
+        <h4>Signature</h4>
+        <p>Every section is a checklist phase — <em>before start</em>, <em>run-up</em>,
+          <em>after landing</em> — so the page is read the way a flight is flown.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ============ E ============ -->
+  <section class="comp">
+    <div class="comp-tab">
+      <span class="letter">E</span>
+      <span class="name">The Weather Brief</span>
+      <span class="from">from the METAR — the coded string every pilot reads before they touch the plane</span>
+    </div>
+
+    <div class="stage wx">
+      <div class="wx-strip">
+        <span>KFXE · FT LAUDERDALE EXEC · 17 AUG 15:53Z</span>
+        <span><span class="wx-chip">VFR</span></span>
+      </div>
+
+      <div class="wx-main">
+        <p class="wx-code">KFXE 171553Z <b>09012G18KT</b> <b>10SM</b> FEW035 30/24 A3002 RMK AO2</p>
+        <p class="wx-decode">Wind 090° at 12, gusting 18 · Visibility 10 statute miles · Few clouds 3,500 ft · 30°C</p>
+
+        <h2 class="wx-head">It's <em>VFR</em> at the field right now. You could be flying by four.</h2>
+        <p class="wx-sub">This is the first thing we'll teach you to read, and it's the reason
+          South Florida is a good place to learn: the weather cooperates most days, so lessons
+          don't get cancelled and you don't lose the muscle memory between them.</p>
+
+        <div class="wx-act">
+          <a class="wx-cta" href="#book">Book a discovery flight — $149</a>
+          <span class="meta">Two slots left this Saturday</span>
+        </div>
+
+        <div class="wx-year">
+          <h4>Flight category at KFXE, every Saturday for the past year</h4>
+          <div class="wx-bars">
+            <i></i><i></i><i class="m"></i><i></i><i></i><i></i><i></i><i class="f"></i><i></i><i></i>
+            <i></i><i class="m"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="m"></i><i></i>
+            <i></i><i></i><i class="f"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="m"></i>
+            <i></i><i></i><i></i><i></i><i class="l"></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i class="m"></i><i></i><i></i><i></i><i></i><i class="f"></i><i></i><i></i><i></i>
+            <i></i><i></i>
+          </div>
+          <div class="wx-legend">
+            <span><b style="background:#2E7D5B"></b> VFR · 46 days</span>
+            <span><b style="background:#2F6FA8"></b> Marginal · 6</span>
+            <span><b style="background:#B3372F"></b> IFR · 3</span>
+            <span><b style="background:#8E3C74"></b> Low IFR · 1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-notes">
+      <div class="note">
+        <h4>Palette</h4>
+        <div class="swatches">
+          <span style="background:#E4E7E6">E4E7E6</span>
+          <span class="dk" style="background:#1C2426">1C2426</span>
+          <span class="dk" style="background:#2E7D5B">2E7D5B</span>
+          <span class="dk" style="background:#2F6FA8">2F6FA8</span>
+          <span class="dk" style="background:#B3372F">B3372F</span>
+          <span class="dk" style="background:#8E3C74">8E3C74</span>
+        </div>
+      </div>
+      <div class="note">
+        <h4>Type</h4>
+        <p><strong>Bahnschrift SemiCondensed</strong> for display · <strong>Corbel</strong> for body ·
+          <strong>Consolas</strong> for the coded string and its decode, aligned line to line.</p>
+      </div>
+      <div class="note">
+        <h4>The risk</h4>
+        <p>Opening on a wall of code assumes curiosity. It rewards the reader who wants to feel
+          let in on something, and loses the one who wants a picture of an airplane.</p>
+      </div>
+      <div class="note">
+        <h4>Signature</h4>
+        <p>Those four colors aren't chosen — VFR green, marginal blue, IFR red, low IFR magenta
+          are the standardized flight categories. The palette is borrowed from the instrument.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ============ F ============ -->
+  <section class="comp">
+    <div class="comp-tab">
+      <span class="letter">F</span>
+      <span class="name">Hold Short</span>
+      <span class="from">from FAA sign spec — red means stop, yellow means go that way, and every pilot knows it</span>
+    </div>
+
+    <div class="stage sg">
+      <div class="sg-signs">
+        <div class="sg-sign hold">26L&nbsp;–&nbsp;8R</div>
+        <div class="sg-sign">A</div>
+        <div class="sg-sign dir"><span>B</span><span>↑</span></div>
+        <div class="sg-sign dir"><span>←</span><span>26L</span></div>
+      </div>
+
+      <h2 class="sg-head">Everyone stops here once. <em>Then they go flying.</em></h2>
+      <p class="sg-sub">The hold-short line is the last place you wait before the runway is yours.
+        Some people sit on the other side of it for years. Ninety minutes and $149 is what it
+        costs to find out which one you are.</p>
+
+      <div class="sg-act">
+        <a class="sg-cta" href="#book">Book a discovery flight — $149</a>
+        <span class="meta">KFXE · taxiway A · no experience, no medical needed</span>
+      </div>
+    </div>
+
+    <div class="comp-notes">
+      <div class="note">
+        <h4>Palette</h4>
+        <div class="swatches">
+          <span class="dk" style="background:#3C3E3B">3C3E3B</span>
+          <span class="dk" style="background:#121312">121312</span>
+          <span style="background:#F0C000">F0C000</span>
+          <span class="dk" style="background:#A81E17">A81E17</span>
+          <span style="background:#F7F6F1">F7F6F1</span>
+          <span class="dk" style="background:#4A4C48">4A4C48</span>
+        </div>
+      </div>
+      <div class="note">
+        <h4>Type</h4>
+        <p>Display only, essentially — <strong>Bahnschrift SemiCondensed</strong> caps at sign scale,
+          with <strong>Segoe UI</strong> handling the small amount of body copy.</p>
+      </div>
+      <div class="note">
+        <h4>The risk</h4>
+        <p>The loudest of the six, and the one most dependent on restraint everywhere else. Three
+          sign colors and nothing more; the moment a fourth accent appears it collapses.</p>
+      </div>
+      <div class="note">
+        <h4>Signature</h4>
+        <p>Section navigation is taxiway direction signs — yellow panels with arrows that route
+          you through the page the way you'd be routed to the runway.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <footer class="closing">
+    <h2>How they differ where it matters</h2>
+    <p><strong>A</strong> is the serious one — it treats training as a document you accumulate, and
+      it puts hours and dollars in front of you immediately. Best if the people you're losing are
+      the ones who think this is out of reach.</p>
+    <p><strong>B</strong> is about the sensation of the thing, and it's the only one that would work
+      with real cockpit photography layered in. Best if you're competing with other schools on
+      feeling like the more professional operation.</p>
+    <p><strong>C</strong> is social proof as the entire structure. It only works if you'll give me
+      real names, real dates, and a photo of the actual wall — invented ones would read as
+      invented.</p>
+    <p><strong>D</strong> is the most reassuring of the six. A checklist is a promise that nothing
+      is improvised, which is exactly what someone nervous about small aircraft needs to hear.
+      Best if the objection you're overcoming is fear rather than price.</p>
+    <p><strong>E</strong> is the insider's direction — it opens on coded weather and trusts the
+      reader to want to be let in. It's also the only one that could run on live data, so the page
+      would say something different every day. Best for a self-selecting, technical audience.</p>
+    <p><strong>F</strong> is the loudest and the simplest, and it would survive being printed on a
+      banner or a t-shirt. Best if you need one image people remember and repeat.</p>
+    <p>Placeholder data throughout: <code>KFXE</code>, the tail numbers, the rates, the $12,840 PPL
+      figure, the names on the wall and the Saturday weather record are realistic invention. Swap
+      in the real field, aircraft, and prices before any of this goes public.</p>
+  </footer>
+
+</div>

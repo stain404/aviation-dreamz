@@ -1,0 +1,11 @@
+# tool cache, not project source
+.impeccable/
+
+# generated copy of the shippable files — rebuild with:
+#   cp index.html ad.jpeg deploy/
+deploy/
+
+# OS cruft
+Thumbs.db
+desktop.ini
+.DS_Store

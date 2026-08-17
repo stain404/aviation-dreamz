@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aviation Dreamz — Airline Career Training Since 1996</title>
+<meta name="description" content="Cabin crew and airline career training since 1996. Over 5,000 students placed with domestic and international airlines, under proprietor Fowzia Shaikh." />
+<link rel="icon" href="ad.jpeg" />
+
+<!-- ============================================================
+     CONFIRMED FACTS (supplied by the client — safe to state)
+     · Established 1996 · 30 years' experience
+     · Proprietor: Fowzia Shaikh
+     · 5,000+ students placed, domestic and international airlines
+     · Premier institute for airline careers
+
+     STILL TO CONFIRM OR REPLACE
+     · Course length and price — the FAQ says "replace this"; there is
+       no duration claimed anywhere on the page yet
+     · Whether the free 45-minute assessment actually exists as an offer;
+       it is the page's primary call to action
+     · Whether reach is measured at that assessment
+     · Whether the start/end voice recording is a real practice
+     · Airline names in the "where graduates went" row — left blank on
+       purpose. Do not fill with airlines you cannot evidence.
+     · The testimonial: real quote and real attribution only
+     · City, address, phone, WhatsApp, email
+     · Fowzia Shaikh's photo (see .about-photo)
+     · Form endpoint (see submitForm() at the bottom)
+     · Fowzia Shaikh's pronouns are not known, so no pronoun is used
+       anywhere on this page. Set them once confirmed.
+
+     Palette is sampled from ad.jpeg: sky #B2E0F9, red #E0080A,
+     black #070604, white. Do not substitute a deeper blue — the pale
+     sky is what makes the page match the logo, and it is why hero
+     type is black rather than white.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ==============================================================
+   TOKENS — sampled from the logo
+   ============================================================== */
+:root {
+  --sky:        #B2E0F9;   /* logo sky, exact */
+  --sky-tint:   #DFF2FC;   /* pale band background */
+  --sky-line:   #C9E2EF;   /* hairlines, from the sky family */
+  --sky-text:   #0B5C86;   /* deepened logo hue, readable on white */
+
+  --red:        #E0080A;   /* logo red, exact */
+  --red-deep:   #B00507;
+  --red-pale:   #FDEFEF;
+
+  --ink:        #0F0E0C;   /* logo black */
+  --ink-soft:   #4E555B;
+  --dark:       #0E1216;   /* dark bands — black, with a blue lean */
+
+  --white:      #FFFFFF;
+  --paper:      #F7FBFD;
+  --shade:      #C9C6BE;   /* the window shade: a real object, warm grey */
+  --shade-dk:   #B4B1A8;
+
+  --f-display: "Barlow Condensed", "Bahnschrift Condensed", "Arial Narrow", sans-serif;
+  --f-body:    "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:    "IBM Plex Mono", Consolas, "Courier New", monospace;
+
+  --step-0: 1rem;
+  --step-1: 1.125rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(1.75rem, 3vw, 2.25rem);
+  --step-4: clamp(2.1rem, 4.4vw, 3.1rem);
+  --step-5: clamp(2.3rem, 4.6vw, 3.6rem);
+
+  --gut: clamp(20px, 5vw, 64px);
+  --maxw: 1180px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 600; line-height: 0.98; letter-spacing: -0.01em; margin: 0; text-wrap: balance; text-transform: uppercase; }
+p { margin: 0; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+
+.shell { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gut); }
+.eyebrow {
+  font-family: var(--f-mono); font-size: 0.6875rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--sky-text); margin: 0;
+}
+.tnum { font-variant-numeric: tabular-nums; }
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* ==============================================================
+   HEADER
+   ============================================================== */
+.hdr {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--ink);
+}
+.hdr-in { max-width: var(--maxw); margin: 0 auto; padding: 10px var(--gut); display: flex; align-items: center; gap: 24px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; }
+.brand img { width: 46px; height: 46px; border-radius: 7px; flex: none; }
+.brand-txt { display: flex; flex-direction: column; line-height: 1; }
+.brand-txt b { font-family: var(--f-display); font-weight: 700; font-size: 1.18rem; letter-spacing: 0.01em; text-transform: uppercase; }
+.brand-txt span { font-family: var(--f-mono); font-size: 0.5625rem; letter-spacing: 0.14em; color: var(--ink-soft); text-transform: uppercase; margin-top: 4px; }
+
+.nav { display: flex; gap: 24px; }
+.nav a {
+  font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none; color: var(--ink-soft);
+  padding: 4px 0; border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.nav a:hover { color: var(--ink); border-bottom-color: var(--red); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--f-display); font-weight: 600; font-size: 0.9375rem;
+  letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+  padding: 11px 22px; border: 2px solid transparent; border-radius: 2px;
+  cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.btn-red { background: var(--red); color: var(--white); }
+.btn-red:hover { background: var(--red-deep); }
+/* white face, black rule — the logo's own pairing. Solid rather than
+   transparent because this button straddles the horizon, and black text
+   on the red half would only reach 3.4:1. */
+.btn-outline { background: var(--white); color: var(--ink); border-color: var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--white); }
+.btn-lg { font-size: 1.0625rem; padding: 15px 30px; }
+
+@media (max-width: 1040px) { .nav { display: none; } }
+
+/* ==============================================================
+   HERO — the logo's own composition: pale sky above, red band
+   below, black type. --p is scroll progress through the hero,
+   written by JS each frame; the shade, the sign and the bank all
+   read from it, so scrolling back up reverses everything.
+   ============================================================== */
+/* The hero background is deliberately plain and flat — one field of the
+   logo's sky, no diagonal. All the weather lives inside the window, which
+   makes the window the only thing to look at. */
+.hero {
+  --p: 0;
+  position: relative; overflow: hidden;
+  background: var(--sky);
+  color: var(--ink);
+  min-height: min(90vh, 800px);
+  display: flex; flex-direction: column;
+}
+
+/* the cabin window: white frame, thin black outline — the logo's
+   white-on-black, and a grid item so its top edge shares a row line
+   with the headline */
+.hero-window {
+  grid-area: 2 / 2;
+  align-self: start;
+  width: 250px; height: 322px;
+  border: 11px solid var(--white);
+  border-radius: 116px;
+  box-shadow: 0 0 0 3px var(--ink), inset 0 0 0 2px rgba(15,14,12,0.22);
+  overflow: hidden;
+  position: relative;
+  pointer-events: none;
+}
+/* The view: sky, a few high clouds and a cloud deck below, drawn entirely in
+   CSS gradients. Oversized and rotated so the bank reads inside the window
+   without ever exposing a corner. */
+.hero-view {
+  position: absolute;
+  inset: -34%;
+  transform: rotate(calc(-8deg * (1 - var(--p))));
+  transform-origin: 50% 50%;
+  background-color: #A9DCF7;
+  /* Clouds are clusters of overlapping soft circles, not single ellipses —
+     a lone ellipse reads as a lozenge. Each puff fades to nothing over most
+     of its radius so the edges stay soft where they overlap. */
+  background-image:
+    /* high wisp, left */
+    radial-gradient(circle 17px at 31% 39%, #FFFFFF 0 46%, rgba(255,255,255,0) 100%),
+    radial-gradient(circle 13px at 35.5% 38%, #FFFFFF 0 46%, rgba(255,255,255,0) 100%),
+    radial-gradient(circle 11px at 27.5% 40%, rgba(255,255,255,0.92) 0 46%, rgba(255,255,255,0) 100%),
+    /* high wisp, right */
+    radial-gradient(circle 14px at 69% 34%, rgba(255,255,255,0.92) 0 46%, rgba(255,255,255,0) 100%),
+    radial-gradient(circle 10px at 72.5% 33.5% , rgba(255,255,255,0.85) 0 46%, rgba(255,255,255,0) 100%),
+    /* the deck below — six puffs whose solid cores overlap, so they read as
+       one continuous deck rather than a row of cotton balls */
+    radial-gradient(circle 40px at 27% 68%, #FFFFFF 0 58%, rgba(255,255,255,0) 100%),
+    radial-gradient(circle 34px at 35% 66.4%, #FFFFFF 0 58%, rgba(255,255,255,0) 100%),
+    radial-gradient(circle 44px at 44% 68.6%, #FFFFFF 0 58%, rgba(255,255,255,0) 100%),
+    radial-gradient(circle 36px at 53% 66.8%, #FFFFFF 0 58%, rgba(255,255,255,0) 100%),
+    radial-gradient(circle 41px at 62% 68.6%, #FFFFFF 0 58%, rgba(255,255,255,0) 100%),
+    radial-gradient(circle 33px at 70% 67%, #FFFFFF 0 58%, rgba(255,255,255,0) 100%),
+    /* haze the deck sits on, tying it together */
+    radial-gradient(170px 52px at 48% 73%, rgba(255,255,255,0.82) 0 45%, rgba(255,255,255,0) 100%),
+    /* sky, deeper at altitude */
+    linear-gradient(180deg, #6FBFEE 0%, #97D4F5 42%, #B6E2FA 72%, #CFEBFB 100%);
+}
+
+.hero-shade {
+  position: absolute; inset: -2px; z-index: 2;
+  background: linear-gradient(180deg, var(--shade) 0%, var(--shade-dk) 100%);
+  transform: translateY(calc(-101% * var(--p)));
+}
+.hero-shade::after {           /* the pull tab */
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 9px;
+  width: 44px; height: 5px;
+  margin-left: -22px;
+  border-radius: 3px;
+  background: rgba(15,14,12,0.34);
+}
+
+/* the fasten-seat-belt sign, on the eyebrow's row above the window */
+.seatbelt {
+  grid-area: 1 / 2;
+  justify-self: center;
+  align-self: start;
+  display: flex; align-items: center; gap: 9px;
+  padding: 8px 14px; border-radius: 3px;
+  font-family: var(--f-mono); font-size: 0.5rem; letter-spacing: 0.16em;
+  white-space: nowrap;
+  background: var(--red);
+  color: var(--white);
+  box-shadow: 0 0 12px rgba(224,8,10,0.28);
+  transition: background 0.45s ease, color 0.45s ease, box-shadow 0.45s ease;
+  pointer-events: none;
+}
+.seatbelt svg { display: block; }
+.seatbelt.is-off {
+  background: rgba(15,14,12,0.14);
+  color: rgba(15,14,12,0.45);
+  box-shadow: none;
+}
+
+@media (max-width: 1040px) { .hero-window, .seatbelt { display: none; } }
+
+/* Two columns sharing two row lines:
+     row 1 — eyebrow     |  seat-belt sign
+     row 2 — headline …   |  window
+   align-items: start puts the headline's cap line and the window's
+   top edge on the same line. */
+.hero-in {
+  max-width: var(--maxw); width: 100%; margin: 0 auto;
+  padding: clamp(44px, 6.5vh, 72px) var(--gut) 30px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: clamp(24px, 4vw, 60px);
+  row-gap: 18px;
+  align-content: center;
+  align-items: start;
+}
+.hero-top { grid-area: 1 / 1; }
+.hero-body { grid-area: 2 / 1; display: flex; flex-direction: column; gap: 18px; max-width: 640px; }
+.hero-in .eyebrow { color: var(--ink); opacity: 0.75; }
+.hero h1 { font-size: var(--step-5); max-width: 21ch; }
+.hero-sub { font-size: var(--step-1); color: #2A3138; }
+.hero-acts { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4px; }
+.hero-fine { font-family: var(--f-mono); font-size: 0.75rem; color: #3C444A; letter-spacing: 0.04em; }
+@media (max-width: 1040px) {
+  .hero-in { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
+  .hero-body { max-width: 100%; }
+  .hero h1 { max-width: 22ch; }
+}
+
+/* The red band is now a straight horizontal stripe at the foot of the hero,
+   carrying the stats — the logo's blue-over-red, squared off. White on this
+   red is 6.4:1, so the type is safe on it. */
+.readout {
+  margin: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  background: var(--red); border-top: 3px solid var(--white);
+}
+.readout div { padding: 15px clamp(16px, 3vw, 26px); border-right: 1px solid rgba(255,255,255,0.28); }
+.readout div:last-child { border-right: 0; }
+.readout dt { font-family: var(--f-mono); font-size: 0.5625rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.86); margin-bottom: 6px; }
+.readout dd { margin: 0; font-family: var(--f-mono); font-weight: 500; font-size: 1.5rem; line-height: 1; color: var(--white); font-variant-numeric: tabular-nums; }
+.readout dd small { font-size: 0.5625rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.86); margin-left: 4px; }
+
+/* ==============================================================
+   SECTION SCAFFOLD
+   ============================================================== */
+section { padding-block: clamp(48px, 7.5vw, 86px); }
+.sec-head { display: flex; flex-direction: column; gap: 11px; max-width: 60ch; margin-bottom: clamp(26px, 3.5vw, 42px); }
+.sec-head h2 { font-size: var(--step-4); }
+.sec-head p { color: var(--ink-soft); }
+.band-white { background: var(--white); border-block: 1px solid var(--sky-line); }
+.band-pale { background: var(--sky-tint); border-block: 1px solid var(--sky-line); }
+.band-dark { background: var(--dark); color: #D5E4EC; }
+.band-dark .sec-head h2 { color: var(--white); }
+.band-dark .sec-head p { color: #ADC7D6; }
+.band-dark .eyebrow { color: var(--sky); }
+
+/* ==============================================================
+   WHY — four reasons, one sentence each. Not a sequence.
+   ============================================================== */
+.why { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 1px; background: var(--sky-line); }
+.why > div { background: var(--white); padding: 24px 22px; display: flex; flex-direction: column; gap: 10px; }
+.why h3 { font-size: 1.3125rem; }
+.why h3::before { content: ""; display: block; width: 24px; height: 3px; background: var(--red); margin-bottom: 12px; }
+.why p { font-size: 0.9375rem; color: var(--ink-soft); }
+
+/* ==============================================================
+   WHAT YOU LEARN — the job first, the interview second
+   ============================================================== */
+.learn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--sky-line); margin-bottom: clamp(28px, 4vw, 48px); }
+.learn-col { background: var(--white); padding: 24px 24px 28px; }
+.learn-col h3 { font-size: 1.375rem; margin-bottom: 4px; }
+.learn-col > p { font-size: 0.8125rem; color: var(--ink-soft); margin-bottom: 16px; }
+.learn-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.learn-col li { font-size: 0.9375rem; padding-left: 22px; position: relative; }
+.learn-col li::before {
+  content: ""; position: absolute; left: 0; top: 0.55em;
+  width: 9px; height: 2px; background: var(--red);
+}
+@media (max-width: 760px) { .learn-grid { grid-template-columns: 1fr; } }
+
+.sample-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.sample-head h3 { font-size: var(--step-2); }
+.eng-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(26px, 3.5vw, 44px); align-items: start; }
+@media (max-width: 900px) { .eng-grid { grid-template-columns: 1fr; } }
+
+.swap-head {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding-bottom: 9px;
+  font-family: var(--f-mono); font-size: 0.5875rem; letter-spacing: 0.15em; text-transform: uppercase;
+}
+.swap-head span:first-child { color: var(--red-deep); }
+.swap-head span:last-child { color: var(--sky-text); }
+.swap { border-top: 2px solid var(--ink); }
+.swap-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; padding: 15px 0; border-bottom: 1px solid var(--sky-line); align-items: start; }
+.swap-row .k { font-family: var(--f-mono); font-size: 0.5875rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); grid-column: 1 / -1; }
+.swap-row .a { color: var(--ink-soft); font-size: 0.9375rem; text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 1px; }
+.swap-row .b { font-size: 0.9375rem; font-weight: 500; }
+
+.pa { background: var(--dark); color: var(--white); padding: 24px 22px; display: flex; flex-direction: column; gap: 14px; }
+.pa h4 { font-size: 1.25rem; color: var(--white); }
+.pa .script { font-family: var(--f-mono); font-size: 0.875rem; line-height: 2; color: #D5E4EC; }
+.pa .script b { color: var(--white); font-weight: 600; letter-spacing: 0.04em; }
+.pa .script i { color: var(--sky); font-style: normal; padding: 0 2px; }
+.pa .legend { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8FB2C6; }
+.pa .keep { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 14px; font-size: 0.9375rem; color: #D5E4EC; }
+.pa .keep b { color: var(--white); }
+
+/* ==============================================================
+   ASSESSMENT DAY — five stages, in order, one line each
+   ============================================================== */
+.stages { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(255,255,255,0.2); }
+.stage { background: var(--dark); padding: 20px 18px 24px; display: flex; flex-direction: column; gap: 9px; }
+.stage b { font-family: var(--f-mono); font-size: 1.25rem; font-weight: 600; color: var(--sky); line-height: 1; font-variant-numeric: tabular-nums; }
+.stage h3 { font-size: 1.125rem; color: var(--white); }
+.stage p { font-size: 0.875rem; color: #ADC7D6; }
+@media (max-width: 940px) { .stages { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .stages { grid-template-columns: 1fr; } }
+
+/* ==============================================================
+   PROOF
+   ============================================================== */
+.proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(26px, 4vw, 52px); align-items: start; }
+@media (max-width: 820px) { .proof-grid { grid-template-columns: 1fr; } }
+.hired { display: flex; flex-wrap: wrap; gap: 9px; }
+.hired span {
+  font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.08em;
+  padding: 10px 16px; border: 1px dashed var(--sky-line); color: var(--ink-soft); background: var(--white);
+}
+.hired + p { margin-top: 14px; font-size: 0.8125rem; color: var(--ink-soft); }
+.quote { background: var(--white); border: 1px solid var(--sky-line); padding: 24px 22px; display: flex; flex-direction: column; gap: 14px; }
+/* weight is set explicitly because Barlow is only loaded at 500/600/700 —
+   left at the default 400 the browser would synthesise or snap it */
+.quote blockquote { margin: 0; font-family: var(--f-display); font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 1.3125rem; line-height: 1.3; }
+.quote figcaption { font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.08em; color: var(--ink-soft); text-transform: uppercase; }
+
+/* ==============================================================
+   ABOUT
+   ============================================================== */
+.about-grid { display: grid; grid-template-columns: minmax(230px, 310px) 1fr; gap: clamp(28px, 5vw, 60px); align-items: start; }
+.about-left { display: flex; flex-direction: column; gap: 24px; }
+.about-photo {
+  aspect-ratio: 4 / 5; border: 1px solid var(--sky-line); position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 13px; text-align: center; padding: 20px;
+  background-image: linear-gradient(155deg, var(--sky) 0%, var(--red-pale) 100%);
+}
+.about-photo svg { opacity: 0.45; }
+.about-photo span {
+  font-family: var(--f-mono); font-size: 0.625rem; line-height: 1.5;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
+  background: var(--white); padding: 7px 10px; border: 1px solid var(--sky-line);
+}
+.about-body { display: flex; flex-direction: column; gap: 20px; }
+.about-body h2 { font-size: var(--step-4); }
+.about-body p { max-width: 62ch; color: #2A3138; }
+.about-body p.lede { font-size: var(--step-2); color: var(--ink); font-family: var(--f-display); font-weight: 500; text-transform: none; letter-spacing: 0; line-height: 1.3; max-width: 44ch; }
+.about-body p.lede b { color: var(--red); font-weight: 600; }
+.creds { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+.creds li {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+  padding: 8px 0; border-bottom: 1px solid var(--sky-line);
+  font-family: var(--f-mono); font-size: 0.8125rem;
+}
+.creds li span:first-child { font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.creds li span:last-child { font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; }
+@media (max-width: 860px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { max-width: 280px; }
+}
+
+/* ==============================================================
+   FAQ
+   ============================================================== */
+.faq { border-top: 2px solid var(--ink); max-width: 82ch; }
+.faq details { border-bottom: 1px solid var(--sky-line); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 18px 40px 18px 0; position: relative;
+  font-family: var(--f-display); font-size: 1.1875rem; font-weight: 600; text-transform: uppercase;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-mono); font-size: 1.25rem; color: var(--red); line-height: 1;
+}
+.faq details[open] summary::after { content: "–"; }
+.faq summary:hover { color: var(--red); }
+.faq .ans { padding: 0 6ch 20px 0; color: var(--ink-soft); font-size: 0.9375rem; }
+
+/* ==============================================================
+   FORM
+   ============================================================== */
+.book-grid { display: grid; grid-template-columns: 1fr minmax(340px, 500px); gap: clamp(30px, 5vw, 68px); align-items: start; }
+.book-side { display: flex; flex-direction: column; gap: 18px; }
+.book-side h2 { font-size: var(--step-4); }
+.book-side p { color: var(--ink-soft); max-width: 46ch; }
+.contact { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+.contact li { display: flex; flex-direction: column; gap: 3px; }
+.contact .k { font-family: var(--f-mono); font-size: 0.5625rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+.contact .v { font-family: var(--f-mono); font-size: 0.9375rem; font-weight: 500; }
+.contact a { text-decoration: none; border-bottom: 1px solid var(--sky-line); }
+.contact a:hover { border-bottom-color: var(--red); }
+
+.eligible { border-top: 2px solid var(--ink); margin-top: 6px; }
+.eligible h4 { font-family: var(--f-mono); font-size: 0.5875rem; letter-spacing: 0.15em; color: var(--ink-soft); padding-top: 13px; }
+.eligible ul { list-style: none; margin: 11px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.eligible li { font-size: 0.875rem; color: var(--ink-soft); padding-left: 20px; position: relative; }
+.eligible li::before { content: "✓"; position: absolute; left: 0; color: var(--red); font-size: 0.8rem; }
+
+.form {
+  background: var(--white); border: 1px solid var(--sky-line); border-top: 4px solid var(--red);
+  padding: clamp(22px, 3.5vw, 32px);
+  display: flex; flex-direction: column; gap: 20px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field > label { font-family: var(--f-mono); font-size: 0.5875rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); }
+.field > label .req { color: var(--red); }
+.field input, .field select, .field textarea {
+  font-family: var(--f-body); font-size: 0.9375rem; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--sky-line); border-radius: 2px;
+  padding: 11px 12px; width: 100%;
+  transition: border-color 0.15s, background 0.15s;
+}
+.field textarea { resize: vertical; min-height: 78px; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--sky-text); }
+.field input:focus, .field select:focus, .field textarea:focus { background: var(--white); border-color: var(--sky-text); }
+.field .hint { font-size: 0.75rem; color: var(--ink-soft); }
+.field .err { font-family: var(--f-mono); font-size: 0.6875rem; color: var(--red-deep); display: none; }
+.field.invalid input, .field.invalid select, .field.invalid textarea { border-color: var(--red); background: var(--red-pale); }
+.field.invalid .err { display: block; }
+
+fieldset { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+fieldset legend {
+  font-family: var(--f-mono); font-size: 0.5875rem; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft);
+  padding: 0; margin-bottom: 6px;
+}
+.days { display: flex; gap: 8px; flex-wrap: wrap; }
+.days label {
+  font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.06em;
+  padding: 8px 13px; border: 1px solid var(--sky-line); background: var(--paper);
+  cursor: pointer; user-select: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.days label:hover { border-color: var(--sky-text); }
+.days input { position: absolute; opacity: 0; width: 0; height: 0; }
+.days label:has(input:checked) { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.days label:has(input:focus-visible) { outline: 3px solid var(--red); outline-offset: 2px; }
+
+.form-foot { display: flex; flex-direction: column; gap: 12px; }
+.form-foot .fine { font-size: 0.75rem; color: var(--ink-soft); }
+.form-status {
+  font-family: var(--f-mono); font-size: 0.8125rem; padding: 12px 14px;
+  border-left: 3px solid var(--red); background: var(--red-pale); color: var(--red-deep);
+  display: none;
+}
+.form-status.show { display: block; }
+
+.sent { display: none; flex-direction: column; gap: 14px; }
+.sent h3 { font-size: var(--step-3); }
+.sent p { color: var(--ink-soft); }
+.sent .lognote {
+  font-family: var(--f-mono); font-size: 0.75rem; white-space: pre-line; line-height: 1.7;
+  background: var(--sky-tint); border: 1px solid var(--sky-line); padding: 12px 14px;
+}
+.form.done .form-live { display: none; }
+.form.done .sent { display: flex; }
+@media (max-width: 900px) { .book-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+
+/* ==============================================================
+   FOOTER
+   ============================================================== */
+.ftr { background: var(--dark); color: #BFD5E1; padding-block: 44px 28px; }
+.ftr-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 32px; }
+.ftr h4 { font-family: var(--f-mono); font-size: 0.5875rem; font-weight: 600; letter-spacing: 0.17em; color: var(--white); margin: 0 0 12px; }
+.ftr p, .ftr li { font-size: 0.875rem; }
+.ftr ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.ftr a { text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.22); }
+.ftr a:hover { border-bottom-color: var(--red); color: var(--white); }
+.ftr-mark { display: flex; align-items: center; gap: 11px; margin-bottom: 13px; }
+.ftr-mark img { width: 40px; height: 40px; border-radius: 6px; }
+.ftr-mark b { font-family: var(--f-display); font-weight: 700; font-size: 1.18rem; letter-spacing: 0.01em; text-transform: uppercase; color: var(--white); }
+.ftr-base {
+  margin-top: 30px; padding-top: 17px; border-top: 1px solid rgba(255,255,255,0.16);
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.06em; color: #7FA1B4;
+}
+@media (max-width: 760px) { .ftr-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+/* ==============================================================
+   MOTION
+   With scroll-linked motion off the hero rests at its end state:
+   --p of 1 means shade open and horizon level, and the sign is off.
+   ============================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero { --p: 1; }
+  .seatbelt {
+    background: rgba(15,14,12,0.14);
+    color: rgba(15,14,12,0.45);
+    box-shadow: none;
+  }
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="brand" href="#top">
+      <img src="ad.jpeg" alt="Aviation Dreamz" width="46" height="46" />
+      <span class="brand-txt">
+        <b>Aviation Dreamz</b>
+        <span>Airline careers · since 1996</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#why">Why it goes wrong</a>
+      <a href="#learn">What you learn</a>
+      <a href="#assessment">Assessment day</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-red" href="#book">Free assessment</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero" style="padding-block: 0">
+    <div class="hero-in">
+      <p class="eyebrow hero-top">Established 1996 · thirty years in airline careers</p>
+
+      <div class="hero-body">
+        <h1>Thirty years of getting people into the cabin</h1>
+        <p class="hero-sub">Aviation Dreamz has trained for airline careers since 1996, and more
+          than 5,000 of our students now fly with domestic and international carriers. Safety and
+          service basics, grooming standards, aviation English and the assessment day itself —
+          taught from no experience at all.</p>
+        <!-- the fine print sits above the buttons because it is plain text and
+             must stay on the pale sky; the buttons carry their own backgrounds
+             and can cross the horizon safely -->
+        <p class="hero-fine">45 minutes · no cost · you leave knowing where you stand</p>
+        <div class="hero-acts">
+          <a class="btn btn-red btn-lg" href="#book">Book a free assessment</a>
+          <a class="btn btn-outline btn-lg" href="#learn">What you learn</a>
+        </div>
+      </div>
+
+      <div class="seatbelt" aria-hidden="true">
+        <svg width="24" height="16" viewBox="0 0 24 16" fill="currentColor">
+          <rect x="0" y="4" width="7" height="8" rx="1.6" />
+          <rect x="17" y="4" width="7" height="8" rx="1.6" />
+          <rect x="7" y="6.6" width="10" height="2.8" />
+        </svg>
+        <span>Fasten seat belt</span>
+      </div>
+
+      <div class="hero-window" aria-hidden="true">
+        <span class="hero-view"></span>
+        <span class="hero-shade"></span>
+      </div>
+    </div>
+
+    <!-- every figure here is client-confirmed except the last, which answers
+         the objection that stops people enquiring -->
+    <dl class="readout">
+      <div><dt>Training since</dt><dd>1996</dd></div>
+      <div><dt>Students placed</dt><dd>5,000<small>+</small></dd></div>
+      <div><dt>Airlines</dt><dd>Domestic &amp; int'l</dd></div>
+      <div><dt>Experience needed</dt><dd>None</dd></div>
+    </dl>
+  </section>
+
+  <!-- ========== WHY ========== -->
+  <section id="why">
+    <div class="shell">
+      <div class="sec-head">
+        <p class="eyebrow">Where it goes wrong</p>
+        <h2>Four things end an application, and none of them is how much you want it</h2>
+      </div>
+      <div class="why">
+        <div>
+          <h3>Not knowing the job</h3>
+          <p>Candidates who can't say what crew actually do all day are transparent to an
+            assessor within a minute.</p>
+        </div>
+        <div>
+          <h3>The group exercise</h3>
+          <p>Assessors are scoring whether you bring quiet people into the discussion, not how
+            much you say.</p>
+        </div>
+        <div>
+          <h3>Grooming and reach</h3>
+          <p>Hair, nails, tattoo coverage, the 212 cm reach — most rejections happen before you
+            speak.</p>
+        </div>
+        <div>
+          <h3>English under pressure</h3>
+          <p>Reading English and speaking it to three assessors are different skills, and only
+            one of them is marked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHAT YOU LEARN ========== -->
+  <section class="band-white" id="learn">
+    <div class="shell">
+      <div class="sec-head">
+        <p class="eyebrow">What you learn</p>
+        <h2>The job first, the interview second</h2>
+        <p>The course covers the work itself and the room you have to get through to reach it,
+          in that order. People who understand the job interview better for it, because they
+          stop guessing what the answer should be.</p>
+      </div>
+
+      <div class="learn-grid">
+        <div class="learn-col">
+          <h3>In the cabin</h3>
+          <p>The work, taught from no experience</p>
+          <ul>
+            <li>Safety and emergency procedures in outline</li>
+            <li>Door and slide operation, armed and disarmed</li>
+            <li>Evacuation commands, shouted properly</li>
+            <li>Fire, smoke and oxygen equipment</li>
+            <li>First aid and in-flight medical basics</li>
+            <li>Galley, trolley and meal service flow</li>
+            <li>Difficult passengers, delays and diversions</li>
+            <li>Crew roles, rosters, layovers and fatigue</li>
+          </ul>
+        </div>
+        <div class="learn-col">
+          <h3>In the room</h3>
+          <p>What the assessment day asks for</p>
+          <ul>
+            <li>The CV format that clears the screen</li>
+            <li>Application photos shot to standard</li>
+            <li>Aviation English and PA delivery</li>
+            <li>Grooming, uniform and the reach test</li>
+            <li>Group exercises, marked to the rubric</li>
+            <li>Competency answers in STAR structure</li>
+            <li>A full mock day, with written feedback</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sample-head">
+        <p class="eyebrow">A sample of the coursework</p>
+        <h3>Aviation English, in practice</h3>
+      </div>
+
+      <div class="eng-grid">
+        <div>
+          <div class="swap-head">
+            <span>What candidates say</span>
+            <span>What crew say</span>
+          </div>
+          <div class="swap">
+            <div class="swap-row">
+              <span class="k">Passenger asks for water</span>
+              <p class="a">"Okay, I will bring it."</p>
+              <p class="b">"Certainly — I'll bring that right away."</p>
+            </div>
+            <div class="swap-row">
+              <span class="k">Declining a request</span>
+              <p class="a">"No, it's not possible."</p>
+              <p class="b">"I'm not able to do that, but here's what I can do."</p>
+            </div>
+            <div class="swap-row">
+              <span class="k">Asking someone to sit down</span>
+              <p class="a">"Sir, sit down please."</p>
+              <p class="b">"Sir, I'll need you seated with your belt fastened."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pa">
+          <h4>The boarding announcement, marked up</h4>
+          <p class="script">Ladies and gentlemen, <i>//</i> welcome aboard. <i>//</i>
+            Please ensure your seat belt is <b>fastened</b>, <i>/</i> your tray table is
+            <b>stowed</b>, <i>/</i> and your seat back is <b>upright</b>. <i>//</i>
+            Cabin crew, <i>/</i> doors to automatic and <b>cross-check</b>.</p>
+          <p class="legend"><i>/</i> short pause &nbsp; <i>//</i> full stop &nbsp;
+            <b>bold</b> stressed syllable</p>
+          <p class="keep">You record this on your first day and again at the end of the course.
+            <b>You keep both recordings.</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ASSESSMENT DAY ========== -->
+  <section class="band-dark" id="assessment">
+    <div class="shell">
+      <div class="sec-head">
+        <p class="eyebrow">From training to the interview</p>
+        <h2>The five stages of an assessment day</h2>
+        <p>This is the order airlines run it in, and roughly where candidates drop out. Thirty
+          years of sending students into these five rooms is what we teach from.</p>
+      </div>
+      <div class="stages">
+        <div class="stage">
+          <b>01</b>
+          <h3>CV screen</h3>
+          <p>Sifted by software before a human sees it.</p>
+        </div>
+        <div class="stage">
+          <b>02</b>
+          <h3>English test</h3>
+          <p>Written, then spoken. The biggest cut of the day.</p>
+        </div>
+        <div class="stage">
+          <b>03</b>
+          <h3>Group assessment</h3>
+          <p>A task with strangers while assessors take notes.</p>
+        </div>
+        <div class="stage">
+          <b>04</b>
+          <h3>Interview</h3>
+          <p>Competency questions, answered under time pressure.</p>
+        </div>
+        <div class="stage">
+          <b>05</b>
+          <h3>Final checks</h3>
+          <p>Reach, swim, medical, documents, offer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROOF ========== -->
+  <section class="band-pale" id="proof">
+    <div class="shell">
+      <div class="sec-head">
+        <p class="eyebrow">Results</p>
+        <h2>Over five thousand students placed since 1996</h2>
+        <p>Across domestic and international carriers, in a sector where most schools are younger
+          than our first intake.</p>
+      </div>
+      <div class="proof-grid">
+        <div>
+          <div class="hired">
+            <span>Airline 1 — replace</span>
+            <span>Airline 2 — replace</span>
+            <span>Airline 3 — replace</span>
+            <span>Airline 4 — replace</span>
+          </div>
+          <p>Name the carriers your graduates actually joined — that list is the most persuasive
+            thing on this page and only you have it. Aviation Dreamz is not affiliated with the
+            airlines named here; they are simply where students were hired.</p>
+        </div>
+        <figure class="quote">
+          <blockquote>"I'd applied twice on my own and never got past the first stage. The third
+            time I knew exactly what the room wanted."</blockquote>
+          <figcaption>[Graduate name] · hired [airline], [month year] · placeholder quote</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="band-white" id="about">
+    <div class="shell about-grid">
+      <div class="about-left">
+        <div class="about-photo">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#0F0E0C" stroke-width="1.2" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.6" />
+            <path d="M4.5 21c0-4.1 3.4-6.6 7.5-6.6s7.5 2.5 7.5 6.6" />
+          </svg>
+          <span>Photo · 4:5 portrait<br />Fowzia Shaikh</span>
+        </div>
+        <ul class="creds">
+          <li><span>Established</span><span class="tnum">1996</span></li>
+          <li><span>Experience</span><span class="tnum">30 years</span></li>
+          <li><span>Students placed</span><span class="tnum">5,000+</span></li>
+          <li><span>Proprietor</span><span>Fowzia Shaikh</span></li>
+          <li><span>Placements</span><span>Domestic &amp; int'l</span></li>
+        </ul>
+      </div>
+      <div class="about-body">
+        <p class="eyebrow">About the institute</p>
+        <h2>Thirty years, one proprietor, five thousand careers</h2>
+        <p class="lede">Aviation Dreamz has been training for airline careers since
+          <b>1996</b>.</p>
+        <p>The institute is led by its proprietor, Fowzia Shaikh, under whose guidance Aviation
+          Dreamz has become a well-known and respected name in the aviation sector. In that time
+          more than 5,000 students have been placed with domestic and international airlines.</p>
+        <p>Thirty years is the part that can't be copied. Syllabuses can be bought and classrooms
+          can be rented, but knowing what a particular airline's assessors actually mark — and
+          how that has shifted over three decades — comes only from having sent students into
+          those rooms since 1996.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section id="faq">
+    <div class="shell">
+      <div class="sec-head">
+        <p class="eyebrow">Before you ask</p>
+        <h2>The questions worth answering honestly</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Do you guarantee me a job?</summary>
+          <p class="ans">Nobody can promise you a specific job — the hiring decision belongs to
+            the airline and depends on their vacancies as much as on you. What we can point to is
+            the record: more than 5,000 students placed since 1996, across domestic and
+            international carriers. Our part is getting you genuinely ready, and then putting you
+            in front of the right openings.</p>
+        </details>
+        <details>
+          <summary>Do I need any experience?</summary>
+          <p class="ans">None. Most people arrive from retail, teaching, nursing or straight from
+            school, and we start from what crew actually do all day. You need enough English to
+            hold a simple conversation — if you can read this page you can start — and the free
+            assessment tells you where you are before you commit to anything.</p>
+        </details>
+        <details>
+          <summary>Am I too old, or too short?</summary>
+          <p class="ans">Most airlines require 18 or over, some 21, and a reach of 212 cm flat or
+            on tiptoes depending on the carrier. There's no upper age limit at most airlines.
+            Height is the one thing we can't train around, so we measure it at the free assessment
+            and tell you which carriers fit.</p>
+        </details>
+        <details>
+          <summary>How long is the course, and what does it cost?</summary>
+          <p class="ans">REPLACE THIS with your real course length, fees and any instalment
+            option. Nothing on this page currently claims a duration or a price, so this is the
+            one answer a serious enquiry will look for and not find.</p>
+        </details>
+        <details>
+          <summary>What if I'm rejected at an assessment day?</summary>
+          <p class="ans">Many people are, the first time — plenty of working crew were turned down
+            once before they were hired. Come back and tell us which stage lost it; that's the
+            most useful information either of us can have, and it changes what we work on before
+            you apply again.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FORM ========== -->
+  <section class="band-white" id="book">
+    <div class="shell book-grid">
+      <div class="book-side">
+        <p class="eyebrow">Free assessment</p>
+        <h2>Forty-five minutes that tell you where you stand</h2>
+        <p>No cost, no deposit. We talk through what the job involves, check your spoken English,
+          look at your CV if you have one, and tell you honestly what standing you'd start from.
+          After thirty years we can usually tell within the hour — including when the answer is
+          that you're not ready to apply this year.</p>
+        <ul class="contact">
+          <li><span class="k">Phone / WhatsApp</span><span class="v"><a href="tel:+10000000000">+1 000 000 0000</a></span></li>
+          <li><span class="k">Email</span><span class="v"><a href="mailto:hello@aviationdreamz.com">hello@aviationdreamz.com</a></span></li>
+          <li><span class="k">Where</span><span class="v">[Street address], [City]</span></li>
+          <li><span class="k">Hours</span><span class="v">Mon–Sat, 10:00–19:00</span></li>
+        </ul>
+        <div class="eligible">
+          <h4>Worth knowing before you come</h4>
+          <ul>
+            <li>18 or over for most carriers</li>
+            <li>Reach of 212 cm, flat or on tiptoes</li>
+            <li>Able to swim 25 m unaided</li>
+            <li>No tattoos visible in uniform</li>
+          </ul>
+        </div>
+      </div>
+
+      <form class="form" id="bookForm" novalidate>
+        <div class="form-live">
+          <div class="form-row">
+            <div class="field" id="f-name">
+              <label for="name">Full name <span class="req" aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="e-name" />
+              <span class="err" id="e-name">Enter the name you'd like us to call you.</span>
+            </div>
+            <div class="field" id="f-phone">
+              <label for="phone">Phone / WhatsApp <span class="req" aria-hidden="true">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required aria-describedby="e-phone" />
+              <span class="err" id="e-phone">Enter a number we can reach you on.</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field" id="f-email">
+              <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="e-email" />
+              <span class="err" id="e-email">Enter an email address we can reply to.</span>
+            </div>
+            <div class="field" id="f-city">
+              <label for="city">City <span class="req" aria-hidden="true">*</span></label>
+              <input id="city" name="city" type="text" autocomplete="address-level2" required aria-describedby="e-city" />
+              <span class="err" id="e-city">Tell us your city so we can offer in person or online.</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field" id="f-goal">
+              <label for="goal">Where you are <span class="req" aria-hidden="true">*</span></label>
+              <select id="goal" name="goal" required aria-describedby="e-goal">
+                <option value="">Choose one</option>
+                <option>Never applied — starting out</option>
+                <option>Applied and was rejected</option>
+                <option>Have an assessment day booked</option>
+                <option>Cabin crew already, moving airline</option>
+              </select>
+              <span class="err" id="e-goal">Pick the one closest to your situation.</span>
+            </div>
+            <div class="field">
+              <label for="english">Your spoken English</label>
+              <select id="english" name="english">
+                <option>Basic — I understand more than I can say</option>
+                <option>Conversational — fine until I'm nervous</option>
+                <option>Confident — I want polish and aviation phrasing</option>
+                <option>I genuinely don't know</option>
+              </select>
+            </div>
+          </div>
+
+          <fieldset>
+            <legend>Days you could come in</legend>
+            <div class="days">
+              <label><input type="checkbox" name="days" value="Mon" /><span>Mon</span></label>
+              <label><input type="checkbox" name="days" value="Tue" /><span>Tue</span></label>
+              <label><input type="checkbox" name="days" value="Wed" /><span>Wed</span></label>
+              <label><input type="checkbox" name="days" value="Thu" /><span>Thu</span></label>
+              <label><input type="checkbox" name="days" value="Fri" /><span>Fri</span></label>
+              <label><input type="checkbox" name="days" value="Sat" /><span>Sat</span></label>
+              <label><input type="checkbox" name="days" value="Evenings" /><span>Evenings</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="msg">Anything we should know</label>
+            <textarea id="msg" name="message" placeholder="Which airlines you're aiming for, or a stage you've failed before."></textarea>
+            <span class="hint">If you've been rejected, tell us at which stage — it changes what we work on first.</span>
+          </div>
+
+          <div class="form-foot">
+            <p class="form-status" id="status" role="status" aria-live="polite"></p>
+            <button class="btn btn-red btn-lg" type="submit">Book my free assessment</button>
+            <p class="fine">Your details go to one inbox and stay there. No mailing list, no
+              sharing with recruiters.</p>
+          </div>
+        </div>
+
+        <div class="sent" id="sent">
+          <h3>Booked — we'll confirm the time</h3>
+          <p>You'll hear back with two or three slots to choose from, usually the same evening.
+            Bring nothing; there's no test to revise for.</p>
+          <p class="lognote" id="sentSummary"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="shell">
+    <div class="ftr-grid">
+      <div>
+        <div class="ftr-mark">
+          <img src="ad.jpeg" alt="" width="40" height="40" />
+          <b>Aviation Dreamz</b>
+        </div>
+        <p>A premier institute for airline careers, established 1996. Over 5,000 students placed
+          with domestic and international airlines.</p>
+        <p style="margin-top:13px;font-size:0.8125rem;color:#7FA1B4">Proprietor: Fowzia Shaikh.
+          Aviation Dreamz is an independent training institute and is not affiliated with any
+          airline.</p>
+      </div>
+      <div>
+        <h4>The course</h4>
+        <ul>
+          <li><a href="#learn">What you learn</a></li>
+          <li><a href="#assessment">The assessment day</a></li>
+          <li><a href="#why">Why applications end</a></li>
+          <li><a href="#about">About the trainer</a></li>
+          <li><a href="#faq">Questions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+10000000000">+1 000 000 0000</a></li>
+          <li><a href="mailto:hello@aviationdreamz.com">hello@aviationdreamz.com</a></li>
+          <li>[Street address], [City]</li>
+          <li>Mon–Sat, 10:00–19:00</li>
+          <li><a href="#book">Book a free assessment</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-base">
+      <span>© 2026 Aviation Dreamz · established 1996</span>
+      <span>Airline career training · 5,000+ placed</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  /* ----------------------------------------------------------
+     One scroll progress value drives the whole hero, so scrolling
+     back up runs the sequence in reverse: the shade comes down,
+     the seat-belt sign comes back on, the horizon banks again.
+     ---------------------------------------------------------- */
+  var hero = document.getElementById("hero");
+  var sign = document.querySelector(".seatbelt");
+  var queued = false;
+
+  function apply() {
+    queued = false;
+    var span = (hero.offsetHeight || 1) * 0.7;
+    var p = Math.min(1, Math.max(0, window.scrollY / span));
+    hero.style.setProperty("--p", p.toFixed(4));
+    sign.classList.toggle("is-off", p > 0.55);
+  }
+
+  function onScroll() {
+    if (!queued) { queued = true; requestAnimationFrame(apply); }
+  }
+
+  if (!reduce.matches) {
+    apply();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+  }
+
+  /* ----------------------------------------------------------
+     Form validation. Each error names the problem and the fix.
+     ---------------------------------------------------------- */
+  var form = document.getElementById("bookForm");
+  var status = document.getElementById("status");
+
+  var checks = [
+    { wrap: "f-name",  input: "name",  test: function (v) { return v.trim().length > 1; } },
+    { wrap: "f-phone", input: "phone", test: function (v) { return v.replace(/[^\d]/g, "").length >= 7; } },
+    { wrap: "f-email", input: "email", test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+      /* an empty field has no malformed address to complain about */
+      message: function (v) {
+        return v.trim() === ""
+          ? "Enter an email address we can reply to."
+          : "That email address is missing an @ or a domain.";
+      } },
+    { wrap: "f-city",  input: "city",  test: function (v) { return v.trim().length > 1; } },
+    { wrap: "f-goal",  input: "goal",  test: function (v) { return v !== ""; } }
+  ];
+
+  checks.forEach(function (c) {
+    var el = document.getElementById(c.input);
+    el.addEventListener("input", function () { clear(c); });
+    el.addEventListener("change", function () { clear(c); });
+  });
+
+  function clear(c) {
+    var wrap = document.getElementById(c.wrap);
+    var el = document.getElementById(c.input);
+    if (wrap.classList.contains("invalid") && c.test(el.value)) {
+      wrap.classList.remove("invalid");
+      el.removeAttribute("aria-invalid");
+    }
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var bad = [];
+
+    checks.forEach(function (c) {
+      var wrap = document.getElementById(c.wrap);
+      var el = document.getElementById(c.input);
+      if (c.test(el.value)) {
+        wrap.classList.remove("invalid");
+        el.removeAttribute("aria-invalid");
+      } else {
+        wrap.classList.add("invalid");
+        el.setAttribute("aria-invalid", "true");
+        if (c.message) { wrap.querySelector(".err").textContent = c.message(el.value); }
+        bad.push(c);
+      }
+    });
+
+    if (bad.length) {
+      status.textContent = bad.length === 1
+        ? "One field needs fixing before this can send."
+        : bad.length + " fields need fixing before this can send.";
+      status.className = "form-status show";
+      document.getElementById(bad[0].input).focus();
+      return;
+    }
+
+    status.className = "form-status";
+    submitForm(new FormData(form));
+  });
+
+  /* ----------------------------------------------------------
+     NOT WIRED UP YET.
+     Replace the body of this function with a fetch() to your form
+     handler (Formspree, Netlify Forms, or your own endpoint) and
+     call showSent() on a successful response.
+     ---------------------------------------------------------- */
+  function submitForm(data) {
+    var days = data.getAll("days");
+    var summary =
+      "SITUATION  " + data.get("goal") + "\n" +
+      "ENGLISH  " + data.get("english") + "\n" +
+      "CONTACT  " + data.get("name") + " · " + data.get("phone") + " · " + data.get("city") + "\n" +
+      "AVAILABLE  " + (days.length ? days.join(", ") : "not specified");
+    showSent(summary);
+  }
+
+  function showSent(summary) {
+    document.getElementById("sentSummary").textContent = summary;
+    form.classList.add("done");
+    document.getElementById("sent").scrollIntoView({ block: "center" });
+  }
+})();
+</script>
+</body>
+</html>
