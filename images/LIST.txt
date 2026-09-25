@@ -1,0 +1,26 @@
+Put photos and videos in this folder with exactly these names.
+Shape in brackets: 21:9 = very wide, 16:9 = wide, 3:2 = landscape, 4:5 = portrait.
+
+HOME
+  1.jpeg        Students in uniform in the training cabin (21:9)
+  video-1.mp4   A training day, 60-90 seconds (16:9)
+
+THE COURSE
+  2.jpeg        Evacuation drill at the training door (21:9)
+  3.jpeg        Grooming session (3:2)
+  4.jpeg        Galley / trolley service practice (4:5)
+  5.jpeg        Mock interview (4:5)
+  video-2.mp4   Cabin announcement practice (16:9)
+
+ABOUT
+  6.jpeg        Fowzia Shaikh, portrait (4:5)
+  7.jpeg        (not used at the moment)
+  19.jpeg       LANDSCAPE: reception or main classroom (21:9, very wide)
+  8.jpeg        Training cabin (4:5)
+  9.jpeg        Grooming studio (4:5)
+  10.jpeg       A graduating batch (4:5)
+  video-3.mp4   Proprietor's welcome, 1-2 minutes (16:9)
+
+PLACEMENTS
+  11.jpeg - 18.jpeg   Eight graduates in airline uniform (4:5)
+  video-4.mp4 - video-6.mp4   Three graduate interviews, 60-90 seconds (16:9)

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact — Aviation Dreamz</title>
+<meta name="description" content="Book a free counselling session with Aviation Dreamz. We'll call you back, usually the same day." />
+<link rel="icon" href="ad.jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr cheat">
+  <div class="hdr-in">
+    <a class="brand" href="index.html">
+      <img src="ad.jpeg" alt="" width="44" height="44" />
+      <span>Aviation Dreamz</span>
+    </a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="course.html">The course</a>
+      <a href="about.html">About</a>
+      <a href="placements.html">Placements</a>
+      <a href="faq.html">Questions</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <a class="btn" href="contact.html">Book counselling</a>
+    <button class="menu-btn" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
+  </div>
+</header>
+
+<main id="main">
+<section class="opening navy">
+  <div class="wrap">
+    <div>
+      <h1>Book a free counselling session.</h1>
+    </div>
+    <p>Leave your details and we'll call you back, usually the same day. There is no fee, no deposit and no obligation.</p>
+  </div>
+</section>
+
+<section class="flush-top">
+  <div class="wrap cols">
+    <div class="stack">
+      <dl class="contact-list">
+        <div><dt>Telephone</dt><dd><a href="tel:+10000000000">+1 000 000 0000</a></dd></div>
+        <div><dt>WhatsApp</dt><dd><a href="https://wa.me/10000000000">+1 000 000 0000</a></dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:hello@aviationdreamz.com">hello@aviationdreamz.com</a></dd></div>
+        <div><dt>Address</dt><dd>[Street address]<br />[City]</dd></div>
+        <div><dt>Hours</dt><dd>[Monday to Saturday, 10:00–18:00]</dd></div>
+      </dl>
+      <p class="muted" style="font-size:0.9375rem">At the session we'll talk through what the job
+        involves, check your eligibility and English, and tell you honestly whether you're ready.
+        Your details stay with us and are never shared.</p>
+    </div>
+
+    <form class="form" id="enquiryForm" novalidate>
+      <div class="form-live">
+        <div class="form-row">
+          <div class="field" id="f-name">
+            <label for="name">Full name <span class="req">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="e-name" />
+            <span class="err" id="e-name">Please tell us your name.</span>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="phone">Mobile or WhatsApp <span class="req">*</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required aria-describedby="e-phone" />
+            <span class="err" id="e-phone">We need a number to call you back on.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field" id="f-email">
+            <label for="email">Email <span class="req">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="e-email" />
+            <span class="err" id="e-email">Please add an email we can reply to.</span>
+          </div>
+          <div class="field" id="f-city">
+            <label for="city">City <span class="req">*</span></label>
+            <input id="city" name="city" type="text" autocomplete="address-level2" required aria-describedby="e-city" />
+            <span class="err" id="e-city">Which city are you in?</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="qualification">Education</label>
+            <select id="qualification" name="qualification">
+              <option>Still at school</option>
+              <option>School complete</option>
+              <option>At college or university</option>
+              <option>Graduate</option>
+              <option>Postgraduate</option>
+            </select>
+          </div>
+          <div class="field" id="f-stage">
+            <label for="stage">Where you are <span class="req">*</span></label>
+            <select id="stage" name="stage" required aria-describedby="e-stage">
+              <option value="">Please choose</option>
+              <option>Just starting to look into it</option>
+              <option>Ready to enrol</option>
+              <option>Applied before and was turned down</option>
+              <option>Already cabin crew, changing airline</option>
+            </select>
+            <span class="err" id="e-stage">Choose whichever is closest.</span>
+          </div>
+        </div>
+        <label class="consent" id="f-consent">
+          <input type="checkbox" id="consent" name="consent" />
+          <span>I agree to be contacted by Aviation Dreamz by phone, WhatsApp, SMS or email about
+            the course and admissions.</span>
+        </label>
+        <p class="form-status" id="status" role="status" aria-live="polite"></p>
+        <button class="btn" type="submit">Request a call back</button>
+      </div>
+      <div class="sent" id="sent">
+        <h2>Thank you.</h2>
+        <p>We'll call you back, usually the same day and always within 24 hours. There is nothing
+          to prepare and nothing to pay.</p>
+        <p class="recap" id="recap"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="flush-top">
+  <div class="wrap">
+    <figure>
+      <div class="media r-pano">
+        <!-- <iframe src="https://www.google.com/maps/embed?pb=..." title="Map to Aviation Dreamz" loading="lazy"></iframe> -->
+        <span class="note">Map · embed a Google Map of the institute here</span>
+      </div>
+      <figcaption>[Directions: nearest station, parking, which floor.]</figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div>
+        <div class="ftr-name">Aviation Dreamz</div>
+        <p>Cabin crew and airline career training since 1996. More than 5,000 students placed
+          with domestic and international airlines. Proprietor, Fowzia Shaikh.</p>
+      </div>
+      <div>
+        <h4>The institute</h4>
+        <ul>
+          <li><a href="course.html">The course</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="placements.html">Placements</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Enquiries</h4>
+        <ul>
+          <li><a href="faq.html">Questions</a></li>
+          <li><a href="contact.html">Book counselling</a></li>
+          <li><a href="contact.html">Visit us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+10000000000">+1 000 000 0000</a></li>
+          <li><a href="mailto:hello@aviationdreamz.com">hello@aviationdreamz.com</a></li>
+          <li>[Street address], [City]</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-base">
+      <span>© 2026 Aviation Dreamz. Established 1996.</span>
+      <span>A training institute. We do not guarantee employment and are not affiliated with any airline.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

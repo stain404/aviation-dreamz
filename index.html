@@ -4,1104 +4,199 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aviation Dreamz — Cabin Crew Training Since 1996</title>
-<meta name="description" content="Cabin crew and airline career training since 1996. Over 5,000 students placed with domestic and international airlines. Book a free counselling session." />
+<meta name="description" content="Cabin crew and airline career training since 1996. More than 5,000 students placed with domestic and international airlines." />
 <link rel="icon" href="ad.jpeg" />
-
-<!-- ============================================================
-     CONFIRMED FACTS (client-supplied — safe to state)
-     · Established 1996 · 30 years' experience
-     · Proprietor: Fowzia Shaikh
-     · 5,000+ students placed, domestic and international airlines
-     · A premier institute for airline careers
-
-     PHOTOGRAPHY — READ THIS FIRST
-     Every .shot block is an empty slot with a drawn placeholder. They are
-     built to be replaced by real photographs of YOUR students in uniform,
-     which is the single biggest upgrade available to this page. Drop files
-     in beside index.html and swap the shot div for an image tag — there is a
-     ready-made one commented out directly above each slot.
-     Do not paste photos from other institutes' sites, and do not use
-     keyword stock services (LoremFlickr and similar) — the licences there
-     are not cleared for commercial use.
-
-     STILL TO CONFIRM OR REPLACE
-     · Course length and fees — marked REPLACE in the course card and FAQ
-     · Whether the free counselling session exists as an offer (it is the
-       primary call to action on this page)
-     · Accreditations — the trust row is empty on purpose. Only list bodies
-       you are genuinely registered with.
-     · Airline names in the placements row
-     · Testimonials: real quotes, real names, real airlines, with permission
-     · City, address, phone, WhatsApp, email
-     · Fowzia Shaikh's photo and pronouns (no pronoun is used anywhere yet)
-     · Form endpoint (see submitForm() at the bottom)
-     ============================================================ -->
-
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-<style>
-/* ==============================================================
-   TOKENS — brand values sampled from ad.jpeg
-   ============================================================== */
-:root {
-  /* Light blue is the dominant field. It is pale (luminance .68), so it can
-     never carry white text - everything on it is --ink. --blue is the action
-     colour that took over the job red used to do: white on it is 5.4:1. */
-  --sky:       #B2E0F9;
-  --sky-hi:    #A8DCF7;
-  --sky-pale:  #E7F5FD;
-  --blue:      #0E6FA8;
-  --blue-deep: #0A5480;
-  --ink:       #0F0E0C;
-  --ink-soft:  #555C62;
-  --white:     #FFFFFF;
-  --tint:      #F2FAFE;
-  --line:      #D6E8F3;
-  /* red survives only for required markers and errors, where it is a
-     convention rather than a brand colour */
-  --red:       #E0080A;
-  --red-deep:  #B00507;
-
-  --f-script:  "Kaushan Script", "Segoe Script", cursive;
-  --f-display: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --f-body:    "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-
-  --pill: 999px;
-  --card: 22px;
-  --gut: clamp(18px, 5vw, 60px);
-  --maxw: 1200px;
-}
-
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--white);
-  color: var(--ink);
-  font-family: var(--f-body);
-  font-size: 1rem;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 700; line-height: 1.02; letter-spacing: -0.01em; margin: 0; text-wrap: balance; text-transform: uppercase; }
-p { margin: 0; }
-a { color: inherit; }
-img { display: block; max-width: 100%; }
-
-.shell { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gut); }
-.script { font-family: var(--f-script); font-weight: 400; text-transform: none; letter-spacing: 0; line-height: 1.05; }
-
-:where(a, button, input, select, textarea, summary):focus-visible {
-  outline: 3px solid var(--ink);
-  outline-offset: 3px;
-}
-
-/* ==============================================================
-   BUTTONS — fully rounded, the warm-marketing convention
-   ============================================================== */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  font-family: var(--f-display); font-weight: 700; font-size: 1rem;
-  letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
-  padding: 15px 30px; border: 2px solid transparent; border-radius: var(--pill);
-  cursor: pointer; transition: transform 0.14s ease, background 0.14s, color 0.14s, border-color 0.14s;
-}
-.btn:hover { transform: translateY(-2px); }
-.btn-white { background: var(--white); color: var(--blue); box-shadow: 0 6px 18px rgba(0,0,0,0.16); }
-.btn-white:hover { background: var(--sky-pale); }
-.btn-blue { background: var(--blue); color: var(--white); }
-.btn-blue:hover { background: var(--blue-deep); }
-.btn-ink { background: transparent; color: var(--ink); border-color: var(--ink); }
-.btn-ink:hover { background: var(--ink); color: var(--white); }
-.btn svg { flex: none; }
-
-/* ==============================================================
-   HEADER
-   ============================================================== */
-.hdr {
-  position: sticky; top: 0; z-index: 60;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-}
-.hdr-in { max-width: var(--maxw); margin: 0 auto; padding: 9px var(--gut); display: flex; align-items: center; gap: 22px; }
-.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; margin-right: auto; }
-.brand img { width: 48px; height: 48px; border-radius: 9px; flex: none; }
-.brand b { font-family: var(--f-display); font-weight: 700; font-size: 1.24rem; text-transform: uppercase; display: block; line-height: 1; }
-.brand span { font-size: 0.6875rem; color: var(--ink-soft); letter-spacing: 0.05em; }
-.nav { display: flex; gap: 22px; }
-.nav a {
-  font-size: 0.8125rem; font-weight: 600; text-decoration: none; color: var(--ink-soft);
-  padding: 4px 0; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s;
-}
-.nav a:hover { color: var(--blue); border-bottom-color: var(--blue); }
-.hdr .btn { padding: 11px 22px; font-size: 0.875rem; }
-@media (max-width: 1080px) { .nav { display: none; } }
-
-/* ==============================================================
-   HERO — white photo panel with a curved edge, light blue field alongside
-   ============================================================== */
-.hero {
-  position: relative;
-  background: radial-gradient(120% 130% at 78% 20%, var(--sky-pale) 0%, var(--sky) 55%, var(--sky-hi) 100%);
-  color: var(--ink);
-  overflow: hidden;
-}
-.hero-grid {
-  max-width: var(--maxw); margin: 0 auto;
-  display: grid; grid-template-columns: 0.92fr 1.08fr;
-  align-items: stretch;
-  /* leaves room for the sticky bar so the hero CTAs stay above the fold */
-  min-height: min(70vh, 560px);
-}
-
-/* the figure panel, curving into the field on its right edge. It is white
-   so the curve still reads against the pale blue. */
-.hero-figure {
-  position: relative;
-  background: linear-gradient(170deg, var(--white) 0%, var(--tint) 100%);
-  border-radius: 0 46% 38% 0 / 0 52% 48% 0;
-  overflow: hidden;
-  display: flex; align-items: flex-end; justify-content: center;
-}
-.hero-figure img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-
-/* Honest stand-in until a real photograph is dropped in. Deliberately
-   abstract — a crude human silhouette reads as a broken image, whereas an
-   empty frame reads as "a photo goes here". */
-.shot {
-  position: relative; width: 100%; height: 100%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
-  padding: 24px;
-}
-.shot-frame {
-  width: min(58%, 190px); aspect-ratio: 3/4;
-  border: 2.5px dashed rgba(15,14,12,0.28); border-radius: 18px;
-  display: grid; place-items: center;
-}
-.shot-frame svg { opacity: 0.42; }
-.shot-note {
-  background: rgba(255,255,255,0.94); color: var(--ink);
-  font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
-  padding: 8px 14px; border-radius: var(--pill); text-align: center; line-height: 1.5;
-}
-
-.hero-copy {
-  padding: clamp(34px, 5vw, 60px) var(--gut) clamp(40px, 5vw, 58px) clamp(14px, 3vw, 40px);
-  display: flex; flex-direction: column; justify-content: center; gap: 16px;
-}
-.hero-copy .script { font-size: clamp(2.5rem, 5.4vw, 4rem); color: var(--blue); }
-.hero-copy h1 { font-size: clamp(1.25rem, 2.1vw, 1.6rem); font-weight: 600; max-width: 24ch; }
-.hero-copy .lede { font-size: 1rem; color: var(--ink-soft); max-width: 46ch; }
-.hero-acts { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
-.hero-fine { font-size: 0.8125rem; color: var(--ink-soft); }
-
-.hero-badge {
-  position: absolute; top: 22px; right: var(--gut); z-index: 3;
-  text-align: right; line-height: 1;
-}
-.hero-badge b { display: block; font-family: var(--f-display); font-weight: 700; font-size: clamp(2rem, 3.4vw, 3rem); color: var(--blue); }
-.hero-badge span { display: block; font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 5px; color: var(--ink-soft); }
-
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; min-height: 0; }
-  .hero-figure { border-radius: 0 0 42% 42% / 0 0 14% 14%; aspect-ratio: 4 / 3; }
-  .hero-copy { padding: 30px var(--gut) 40px; text-align: center; align-items: center; }
-  .hero-copy h1, .hero-copy .lede { max-width: 100%; }
-  .hero-badge { position: static; text-align: center; margin: 22px auto 0; }
-}
-
-/* ==============================================================
-   COUNTERS — the trust strip
-   ============================================================== */
-.counters { background: var(--ink); color: var(--white); }
-/* dividers rather than a gap colour — a gap background would also show
-   through this element's own horizontal padding */
-.counters-in { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
-.counters-in > div { padding: 22px clamp(14px, 2.4vw, 26px); text-align: center; border-left: 1px solid rgba(255,255,255,0.16); }
-.counters-in > div:first-child { border-left: 0; }
-.counters b { display: block; font-family: var(--f-display); font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.6rem); line-height: 1; color: var(--white); }
-.counters span { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: #B9BCBE; margin-top: 7px; }
-.counters b em { font-style: normal; color: var(--sky); }
-
-/* ==============================================================
-   SECTION SCAFFOLD
-   ============================================================== */
-section { padding-block: clamp(46px, 6.5vw, 84px); }
-.band-tint { background: var(--tint); }
-.band-sky { background: var(--sky-pale); }
-.band-blue { background: var(--sky); color: var(--ink); }
-.sec-head { text-align: center; max-width: 62ch; margin: 0 auto clamp(28px, 3.6vw, 46px); display: flex; flex-direction: column; gap: 10px; }
-.sec-head .script { color: var(--blue); font-size: clamp(1.6rem, 3vw, 2.2rem); }
-.sec-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); }
-.sec-head p { color: var(--ink-soft); }
-.band-blue .sec-head p { color: var(--ink-soft); }
-
-/* ==============================================================
-   LEAD FORM — high on the page, rounded pill fields
-   ============================================================== */
-.enquire-grid { display: grid; grid-template-columns: 1fr minmax(330px, 520px); gap: clamp(26px, 4vw, 56px); align-items: center; }
-@media (max-width: 940px) { .enquire-grid { grid-template-columns: 1fr; } }
-.enquire-copy { display: flex; flex-direction: column; gap: 14px; }
-.enquire-copy .script { color: var(--blue); font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
-.enquire-copy h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
-.enquire-copy p { color: var(--ink-soft); max-width: 46ch; }
-.ticks { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
-.ticks li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9375rem; }
-.ticks svg { flex: none; margin-top: 3px; }
-
-.form {
-  background: var(--white); color: var(--ink);
-  border-radius: var(--card);
-  padding: clamp(20px, 3vw, 30px);
-  display: flex; flex-direction: column; gap: 15px;
-  box-shadow: 0 18px 44px rgba(0,0,0,0.20);
-}
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
-@media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
-.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-.field label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); padding-left: 14px; }
-.field label .req { color: var(--red); }
-.field input, .field select, .field textarea {
-  font-family: var(--f-body); font-size: 0.9375rem; color: var(--ink);
-  background: var(--tint); border: 1.5px solid var(--line);
-  border-radius: var(--pill); padding: 13px 17px; width: 100%;
-  transition: border-color 0.15s, background 0.15s;
-}
-.field textarea { border-radius: 18px; resize: vertical; min-height: 70px; }
-.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--blue); }
-.field input:focus, .field select:focus, .field textarea:focus { background: var(--white); border-color: var(--blue); }
-.field .err { font-size: 0.75rem; color: var(--red-deep); font-weight: 600; padding-left: 14px; display: none; }
-.field.invalid input, .field.invalid select { border-color: var(--red); background: #FFF1F1; }
-.field.invalid .err { display: block; }
-
-.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 0.75rem; color: var(--ink-soft); line-height: 1.5; }
-.consent input { flex: none; width: 17px; height: 17px; margin-top: 2px; accent-color: var(--blue); }
-.consent.invalid { color: var(--red-deep); }
-.form-status { font-size: 0.8125rem; font-weight: 600; color: var(--red-deep); background: #FFF1F1; border-radius: 14px; padding: 10px 14px; display: none; }
-.form-status.show { display: block; }
-.form .btn { width: 100%; }
-.sent { display: none; flex-direction: column; gap: 12px; text-align: center; padding: 8px 0; }
-.sent .script { color: var(--blue); font-size: 2rem; }
-.sent p { color: var(--ink-soft); font-size: 0.9375rem; }
-.sent .recap { background: var(--tint); border-radius: 16px; padding: 12px 16px; font-size: 0.8125rem; white-space: pre-line; text-align: left; line-height: 1.7; }
-.form.done .form-live { display: none; }
-.form.done .sent { display: flex; }
-
-/* ==============================================================
-   TRUST / ACCREDITATION ROW
-   ============================================================== */
-.trust { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-.trust span {
-  border: 1.5px dashed var(--line); border-radius: 14px;
-  padding: 16px 22px; font-size: 0.8125rem; color: var(--ink-soft); background: var(--white);
-  min-width: 150px; text-align: center;
-}
-.trust + p { text-align: center; max-width: 60ch; margin: 18px auto 0; font-size: 0.8125rem; color: var(--ink-soft); }
-
-/* ==============================================================
-   COURSE CARD
-   ============================================================== */
-.course {
-  max-width: 720px; margin: 0 auto;
-  background: var(--white); border-radius: var(--card);
-  box-shadow: 0 14px 36px rgba(14,111,168,0.12);
-  border: 1px solid var(--line);
-  overflow: hidden;
-}
-.course-top { background: var(--blue); color: var(--white); padding: 22px 26px; }
-.course-top h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
-.course-top p { font-size: 0.875rem; color: rgba(255,255,255,0.86); margin-top: 5px; }
-.course-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); }
-.course-facts > div { background: var(--white); padding: 17px 20px; }
-.course-facts dt { font-size: 0.625rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-soft); font-weight: 700; }
-.course-facts dd { margin: 5px 0 0; font-family: var(--f-display); font-weight: 700; font-size: 1.1875rem; }
-.course-foot { padding: 20px 26px; display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-.course-foot p { font-size: 0.8125rem; color: var(--ink-soft); }
-
-/* ==============================================================
-   WHY — benefit tiles
-   ============================================================== */
-.why { display: grid; grid-template-columns: repeat(auto-fit, minmax(228px, 1fr)); gap: 16px; }
-.why > div {
-  background: var(--white); border-radius: var(--card); padding: 24px 22px;
-  display: flex; flex-direction: column; gap: 10px;
-  box-shadow: 0 8px 22px rgba(15,14,12,0.07);
-}
-.why .ico { width: 44px; height: 44px; border-radius: 50%; background: var(--sky-pale); display: grid; place-items: center; }
-.why h3 { font-size: 1.25rem; }
-.why p { font-size: 0.9375rem; color: var(--ink-soft); }
-
-/* ==============================================================
-   PLACEMENTS + TESTIMONIALS
-   ============================================================== */
-.logos { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-.logos span {
-  background: var(--white); border: 1.5px dashed var(--line); border-radius: 14px;
-  padding: 18px 26px; min-width: 168px; text-align: center;
-  font-size: 0.8125rem; color: var(--ink-soft);
-}
-.logos + p { text-align: center; max-width: 62ch; margin: 18px auto 0; font-size: 0.8125rem; color: var(--ink-soft); }
-
-.quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-.quote {
-  background: var(--white); border-radius: var(--card); padding: 26px 24px;
-  display: flex; flex-direction: column; gap: 16px;
-  box-shadow: 0 10px 26px rgba(15,14,12,0.08);
-}
-.quote blockquote { margin: 0; font-size: 1rem; line-height: 1.6; color: #33383C; }
-.quote-who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
-.quote-who .av { width: 44px; height: 44px; border-radius: 50%; background: var(--sky-pale); display: grid; place-items: center; flex: none; }
-.quote-who b { display: block; font-family: var(--f-display); font-weight: 700; font-size: 1.0625rem; }
-.quote-who span { display: block; font-size: 0.75rem; color: var(--blue); font-weight: 600; }
-
-/* ==============================================================
-   WHAT YOU LEARN
-   ============================================================== */
-.learn { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 780px) { .learn { grid-template-columns: 1fr; } }
-.learn > div { background: var(--white); border-radius: var(--card); padding: 24px; box-shadow: 0 8px 22px rgba(15,14,12,0.07); }
-.learn h3 { font-size: 1.25rem; margin-bottom: 3px; }
-.learn > div > p { font-size: 0.8125rem; color: var(--ink-soft); margin-bottom: 15px; }
-.learn ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
-.learn li { font-size: 0.9375rem; padding-left: 26px; position: relative; }
-.learn li::before {
-  content: ""; position: absolute; left: 0; top: 0.42em;
-  width: 13px; height: 13px; border-radius: 50%;
-  background: var(--blue);
-}
-.learn li::after {
-  content: ""; position: absolute; left: 4px; top: 0.62em;
-  width: 5px; height: 2.5px; background: var(--white);
-  box-shadow: 2px -2px 0 0 var(--white), 3px -3px 0 0 var(--white);
-}
-
-/* ==============================================================
-   STAGES
-   ============================================================== */
-.stages { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-.stage {
-  background: var(--white); border-radius: 18px; padding: 20px 18px;
-  display: flex; flex-direction: column; gap: 8px;
-  box-shadow: 0 6px 18px rgba(15,14,12,0.07);
-}
-.stage b { font-family: var(--f-display); font-weight: 700; font-size: 1.6rem; line-height: 1; color: var(--blue); }
-.stage h3 { font-size: 1.0625rem; }
-.stage p { font-size: 0.8125rem; color: var(--ink-soft); }
-@media (max-width: 980px) { .stages { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .stages { grid-template-columns: 1fr; } }
-
-/* ==============================================================
-   ABOUT
-   ============================================================== */
-.about { display: grid; grid-template-columns: minmax(220px, 320px) 1fr; gap: clamp(24px, 4vw, 52px); align-items: center; }
-@media (max-width: 860px) { .about { grid-template-columns: 1fr; } }
-.about-shot {
-  aspect-ratio: 4/5; border-radius: var(--card); overflow: hidden;
-  background: linear-gradient(160deg, var(--sky) 0%, var(--white) 100%);
-  position: relative;
-}
-.about-body { display: flex; flex-direction: column; gap: 15px; }
-.about-body .script { color: var(--blue); font-size: clamp(1.6rem, 3vw, 2.2rem); }
-.about-body h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); }
-.about-body p { color: #33383C; max-width: 62ch; }
-.about-facts { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-.about-facts li {
-  background: var(--white); border-radius: var(--pill); padding: 9px 17px;
-  font-size: 0.8125rem; font-weight: 600; box-shadow: 0 4px 12px rgba(15,14,12,0.07);
-}
-.about-facts li b { color: var(--blue); }
-
-/* ==============================================================
-   FAQ
-   ============================================================== */
-.faq { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
-.faq details { background: var(--white); border-radius: 16px; box-shadow: 0 6px 18px rgba(15,14,12,0.06); overflow: hidden; }
-.faq summary {
-  cursor: pointer; list-style: none; padding: 17px 52px 17px 22px; position: relative;
-  font-family: var(--f-display); font-weight: 700; font-size: 1.0625rem; text-transform: uppercase;
-}
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after {
-  content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
-  width: 24px; height: 24px; border-radius: 50%; background: var(--blue); color: var(--white);
-  display: grid; place-items: center; font-family: var(--f-body); font-size: 1rem; line-height: 1;
-}
-.faq details[open] summary::after { content: "–"; }
-.faq .ans { padding: 0 22px 20px; color: var(--ink-soft); font-size: 0.9375rem; }
-
-/* ==============================================================
-   FINAL CTA + FOOTER + STICKY BAR
-   ============================================================== */
-.final { text-align: center; }
-.final .script { font-size: clamp(2.2rem, 5vw, 3.6rem); color: var(--blue); }
-.final h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 8px; }
-.final p { color: var(--ink-soft); max-width: 52ch; margin: 12px auto 22px; }
-
-.ftr { background: var(--ink); color: #B9BCBE; padding-block: 40px 96px; font-size: 0.875rem; }
-.ftr-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 28px; }
-@media (max-width: 760px) { .ftr-grid { grid-template-columns: 1fr; gap: 22px; } }
-.ftr h4 { font-size: 0.75rem; letter-spacing: 0.14em; color: var(--white); margin-bottom: 11px; font-family: var(--f-body); font-weight: 700; }
-.ftr ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
-.ftr a { text-decoration: none; }
-.ftr a:hover { color: var(--white); text-decoration: underline; }
-.ftr-mark { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
-.ftr-mark img { width: 42px; height: 42px; border-radius: 8px; }
-.ftr-mark b { color: var(--white); font-family: var(--f-display); font-size: 1.24rem; text-transform: uppercase; }
-.ftr-base { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 0.75rem; color: #8B9095; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; }
-
-/* Hidden until the hero has scrolled by, so it can never cover the hero's
-   own call to action on a short screen. */
-.sticky {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 70;
-  background: var(--blue); color: var(--white);
-  padding: 11px var(--gut);
-  display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
-  box-shadow: 0 -6px 20px rgba(0,0,0,0.18);
-  transform: translateY(110%);
-  transition: transform 0.28s ease;
-}
-.sticky.show { transform: none; }
-.sticky p { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.04em; }
-.sticky .btn { padding: 11px 24px; font-size: 0.875rem; }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { transition: none !important; animation: none !important; }
-  .btn:hover { transform: none; }
-  /* no slide, but it must still be reachable once shown */
-  .sticky { transform: translateY(110%); }
-  .sticky.show { transform: none; }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="hdr">
+<header class="hdr cheat">
   <div class="hdr-in">
-    <a class="brand" href="#top">
-      <img src="ad.jpeg" alt="Aviation Dreamz" width="48" height="48" />
-      <span>
-        <b>Aviation Dreamz</b>
-        <span>Cabin crew training · since 1996</span>
-      </span>
+    <a class="brand" href="index.html" aria-current="page">
+      <img src="ad.jpeg" alt="" width="44" height="44" />
+      <span>Aviation Dreamz</span>
     </a>
-    <nav class="nav" aria-label="Sections">
-      <a href="#course">The course</a>
-      <a href="#why">Why us</a>
-      <a href="#placements">Placements</a>
-      <a href="#learn">What you learn</a>
-      <a href="#about">About</a>
-      <a href="#faq">FAQs</a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="course.html">The course</a>
+      <a href="about.html">About</a>
+      <a href="placements.html">Placements</a>
+      <a href="faq.html">Questions</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn btn-blue" href="#enquire">Free counselling</a>
+    <a class="btn" href="contact.html">Book counselling</a>
+    <button class="menu-btn" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
   </div>
 </header>
 
-<main id="top">
-
-  <!-- ========== HERO ========== -->
-  <section class="hero">
-    <div class="hero-badge">
-      <b>5,000+</b>
-      <span>Students placed since 1996</span>
-    </div>
-    <div class="hero-grid">
-      <div class="hero-figure">
-        <!-- REPLACE: <img src="student.jpg" alt="Aviation Dreamz student in uniform" /> -->
-        <div class="shot">
-          <span class="shot-frame">
-            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#0F0E0C" stroke-width="1.5" aria-hidden="true">
-              <rect x="2.5" y="5.5" width="19" height="14" rx="2.5"/>
-              <circle cx="12" cy="12.5" r="3.6"/>
-              <path d="M8 5.5l1.4-2h5.2l1.4 2"/>
-            </svg>
-          </span>
-          <span class="shot-note">Photo slot · your student in uniform<br />portrait, 3:4</span>
-        </div>
-      </div>
-
-      <div class="hero-copy">
-        <p class="script">Cleared for takeoff.</p>
-        <h1>Cabin crew training that has put 5,000 people in the air since 1996</h1>
-        <p class="lede">Safety and service, grooming standards, aviation English and the whole
-          assessment day — taught from no experience at all, by an institute that has been doing
-          it for thirty years.</p>
-        <div class="hero-acts">
-          <a class="btn btn-blue" href="#enquire">Book free counselling</a>
-          <a class="btn btn-ink" href="#course">See the course</a>
-        </div>
-        <p class="hero-fine">No cost, no obligation · domestic &amp; international placements</p>
+<main id="main">
+<section class="hero navy">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <h1>Learn the whole job, from the safety drill to the final interview.</h1>
+      <p>Aviation Dreamz has trained cabin crew since 1996. You need no airline experience to
+        start. We teach the work first, then prepare you for each stage of the assessment day.</p>
+      <div class="hero-acts">
+        <a class="more" href="course.html">See what the course covers</a>
+        <small>or call <a href="tel:+10000000000">+1 000 000 0000</a></small>
       </div>
     </div>
-  </section>
 
-  <!-- ========== COUNTERS ========== -->
-  <div class="counters">
-    <div class="shell counters-in">
-      <div><b>1996</b><span>Training since</span></div>
-      <div><b>30<em>+</em></b><span>Years' experience</span></div>
-      <div><b>5,000<em>+</em></b><span>Students placed</span></div>
-      <div><b>Dom &amp; Int'l</b><span>Airlines</span></div>
+    <article class="pass" aria-label="Your route with Aviation Dreamz">
+      <div class="pass-main">
+        <div class="pass-head">
+          <img src="ad.jpeg" alt="" width="28" height="28" />
+          <span>Aviation Dreamz</span>
+          <span class="kind">Boarding pass</span>
+        </div>
+        <div class="pass-route">
+          <div><span class="k">From</span><span class="v">No experience</span></div>
+          <svg viewBox="0 0 200 22" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="0" y1="11" x2="200" y2="11" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 5" vector-effect="non-scaling-stroke" />
+          </svg>
+          <div class="to"><span class="k">To</span><span class="v flap" data-flap>Cabin crew</span></div>
+        </div>
+        <dl class="pass-fields">
+          <div><dt class="k">Since</dt><dd>1996</dd></div>
+          <div><dt class="k">Students placed</dt><dd>5,000+</dd></div>
+          <div><dt class="k">Experience needed</dt><dd>None</dd></div>
+          <div><dt class="k">Minimum age</dt><dd>18</dd></div>
+        </dl>
+      </div>
+      <a class="pass-stub" href="contact.html">
+        <span><span class="k">First step</span><span class="v">Free counselling session</span></span>
+        <span class="go">Book a session</span>
+      </a>
+    </article>
+  </div>
+</section>
+
+<section class="flush-top">
+  <div class="wrap cols rev">
+    <p class="lead">For thirty years we have taught the job itself — the safety drills, the
+      service, the way crew carry themselves — and then prepared each student for the
+      assessment day that decides who is hired.</p>
+    <div class="stack">
+      <p class="muted">The institute has been led from the beginning by its proprietor, Fowzia
+        Shaikh. Our graduates fly with domestic and international airlines, and most arrived
+        straight from school, college or their first job.</p>
+      <p><a class="more" href="about.html">About Aviation Dreamz</a></p>
     </div>
   </div>
+</section>
 
-  <!-- ========== LEAD FORM ========== -->
-  <section class="band-blue" id="enquire">
-    <div class="shell enquire-grid">
-      <div class="enquire-copy">
-        <p class="script">Let's talk first.</p>
-        <h2>Free counselling, then you decide</h2>
-        <p>Tell us where you are and we'll call you back. We'll talk through what the job really
-          involves, check where your English and confidence stand, and tell you honestly whether
-          this is your year.</p>
-        <ul class="ticks">
-          <li>
-            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#0E6FA8"/><path d="M4.6 9.3l2.6 2.6 5.9-5.9" stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round"/></svg>
-            <span>No fee and no deposit to attend</span>
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#0E6FA8"/><path d="M4.6 9.3l2.6 2.6 5.9-5.9" stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round"/></svg>
-            <span>Straight answer on eligibility — age, reach, schooling</span>
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#0E6FA8"/><path d="M4.6 9.3l2.6 2.6 5.9-5.9" stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round"/></svg>
-            <span>Your details stay with us. Never sold, never listed</span>
-          </li>
-        </ul>
-      </div>
-
-      <form class="form" id="enquiryForm" novalidate>
-        <div class="form-live">
-          <div class="form-row">
-            <div class="field" id="f-name">
-              <label for="name">Full name <span class="req">*</span></label>
-              <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="e-name" />
-              <span class="err" id="e-name">Please tell us your name.</span>
-            </div>
-            <div class="field" id="f-phone">
-              <label for="phone">Mobile / WhatsApp <span class="req">*</span></label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" required aria-describedby="e-phone" />
-              <span class="err" id="e-phone">We need a number to call you back on.</span>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="field" id="f-email">
-              <label for="email">Email <span class="req">*</span></label>
-              <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="e-email" />
-              <span class="err" id="e-email">Please add an email we can reply to.</span>
-            </div>
-            <div class="field" id="f-city">
-              <label for="city">City <span class="req">*</span></label>
-              <input id="city" name="city" type="text" autocomplete="address-level2" required aria-describedby="e-city" />
-              <span class="err" id="e-city">Which city are you in?</span>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="field">
-              <label for="qualification">Qualification</label>
-              <select id="qualification" name="qualification">
-                <option>Still at school</option>
-                <option>School complete</option>
-                <option>Studying at college / university</option>
-                <option>Graduate</option>
-                <option>Post-graduate</option>
-              </select>
-            </div>
-            <div class="field" id="f-stage">
-              <label for="stage">Where you are <span class="req">*</span></label>
-              <select id="stage" name="stage" required aria-describedby="e-stage">
-                <option value="">Please choose</option>
-                <option>Just starting to look into it</option>
-                <option>Ready to enrol</option>
-                <option>Applied before and was rejected</option>
-                <option>Already cabin crew, changing airline</option>
-              </select>
-              <span class="err" id="e-stage">Pick whichever is closest.</span>
-            </div>
-          </div>
-
-          <label class="consent" id="f-consent">
-            <input type="checkbox" id="consent" name="consent" />
-            <span>I agree to be contacted by Aviation Dreamz by phone, WhatsApp, SMS or email
-              about the course and admissions.</span>
-          </label>
-
-          <p class="form-status" id="status" role="status" aria-live="polite"></p>
-          <button class="btn btn-blue" type="submit">Request a callback</button>
-        </div>
-
-        <div class="sent" id="sent">
-          <p class="script">Got it!</p>
-          <p>We'll call you back — usually the same day, always within 24 hours. Nothing to
-            prepare, and nothing to pay.</p>
-          <p class="recap" id="recap"></p>
-        </div>
-      </form>
+<section class="flush-top">
+  <div class="wrap">
+    <figure>
+    <div class="media r-pano">
+      <img src="images/1.jpeg" alt="Students in uniform in the Aviation Dreamz training cabin" />
+      <span class="note">1.jpeg: students in uniform in the training cabin, 21:9</span>
     </div>
-  </section>
+    <figcaption>Students in the training cabin, where door, evacuation and service drills are practised.</figcaption>
+  </figure>
+  </div>
+</section>
 
-  <!-- ========== TRUST ROW ========== -->
-  <section class="band-tint">
-    <div class="shell">
-      <div class="sec-head">
-        <p class="script">Recognised</p>
-        <h2>Registrations &amp; approvals</h2>
-      </div>
-      <div class="trust">
-        <span>Approval 1 — replace</span>
-        <span>Approval 2 — replace</span>
-        <span>Approval 3 — replace</span>
-      </div>
-      <p>List only bodies you are genuinely registered with, and link each one to a page that
-        proves it. If there are none yet, delete this section — thirty years and 5,000
-        placements already carry more weight than an unverifiable badge.</p>
+<section class="bg-2">
+  <div class="wrap trio">
+    <div>
+      <h3>The course</h3>
+      <p>Safety and emergency procedures, service, grooming and aviation English — followed by
+        preparation for each stage of an airline assessment day.</p>
+      <a class="more" href="course.html">The course</a>
     </div>
-  </section>
+    <div>
+      <h3>Placements</h3>
+      <p>Our graduates work with domestic and international carriers. Some of them tell their
+        own stories here.</p>
+      <a class="more" href="placements.html">Placements</a>
+    </div>
+    <div>
+      <h3>Counselling</h3>
+      <p>Before anyone enrols, we sit down with them. It is free, and it is the best way to find
+        out whether this is the right year for you.</p>
+      <a class="more" href="contact.html">Book a session</a>
+    </div>
+  </div>
+</section>
 
-  <!-- ========== COURSE ========== -->
-  <section id="course">
-    <div class="shell">
-      <div class="sec-head">
-        <p class="script">One course, done properly</p>
-        <h2>Cabin crew training, start to interview</h2>
-        <p>The work itself first, then the assessment day you have to get through to reach it.</p>
+<section class="navy">
+  <div class="wrap cols rev mid">
+    <figure>
+    <div class="media r-wide">
+      <video src="images/video-1.mp4" title="A training day at Aviation Dreamz" controls preload="metadata" playsinline></video>
+      <span class="playmark" aria-hidden="true"></span>
+      <span class="note">video-1.mp4: a training day, 60–90 seconds, 16:9</span>
+    </div>
+    <figcaption>A day at the institute: a grooming check, cabin announcements and a mock drill.</figcaption>
+  </figure>
+    <div class="stack">
+      <p class="pull">“The mock assessment day was harder than the real one, which is exactly why I passed it.”</p>
+      <p class="muted">[Student name], cabin crew with [airline]</p>
+      <p><a class="more" href="placements.html">More from our graduates</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="closing maroon">
+  <div class="wrap">
+    <div>
+      <div>
+        <h2>Start with a conversation.</h2>
+        <p>A free counselling session, in person or by phone. We'll tell you honestly whether you're eligible and ready, and what the course involves.</p>
       </div>
-
-      <div class="course">
-        <div class="course-top">
-          <h3>Cabin crew &amp; airline careers</h3>
-          <p>Safety · service · grooming · aviation English · assessment-day practice</p>
-        </div>
-        <dl class="course-facts">
-          <div><dt>Duration</dt><dd>REPLACE</dd></div>
-          <div><dt>Experience needed</dt><dd>None</dd></div>
-          <div><dt>Minimum age</dt><dd>18 years</dd></div>
-          <div><dt>Fees</dt><dd>REPLACE</dd></div>
-        </dl>
-        <div class="course-foot">
-          <p>Eligibility, schedule and fee structure are confirmed at your free counselling
-            session.</p>
-          <a class="btn btn-blue" href="#enquire">Enquire now</a>
-        </div>
+      <div class="acts">
+        <a class="btn btn-light" href="contact.html">Book a counselling session</a>
+        <small>Or call <a href="tel:+10000000000">+1 000 000 0000</a></small>
       </div>
     </div>
-  </section>
-
-  <!-- ========== WHY ========== -->
-  <section class="band-sky" id="why">
-    <div class="shell">
-      <div class="sec-head">
-        <p class="script">Why Aviation Dreamz</p>
-        <h2>Thirty years is the part nobody can copy</h2>
-      </div>
-      <div class="why">
-        <div>
-          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E6FA8" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg></div>
-          <h3>Since 1996</h3>
-          <p>Three decades of watching what airline assessors actually mark, and how it has
-            shifted. Syllabuses can be bought; that cannot.</p>
-        </div>
-        <div>
-          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E6FA8" stroke-width="2"><path d="M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/><circle cx="12" cy="7.5" r="3.5"/></svg></div>
-          <h3>5,000+ placed</h3>
-          <p>Students flying with domestic and international carriers. Ask us about the ones
-            from your city.</p>
-        </div>
-        <div>
-          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E6FA8" stroke-width="2"><path d="M3 12h18M12 3l9 9-9 9"/></svg></div>
-          <h3>The whole journey</h3>
-          <p>From your first day with no experience to the final interview — grooming, English,
-            group exercise and mock assessment days.</p>
-        </div>
-        <div>
-          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E6FA8" stroke-width="2"><path d="M12 2l2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 5.9 20.6 7.2 13.8l-5-4.7 6.8-.8z"/></svg></div>
-          <h3>Led by the proprietor</h3>
-          <p>Fowzia Shaikh has guided the institute since it opened, and it is that guidance
-            that made the name what it is in the sector.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PLACEMENTS ========== -->
-  <section id="placements">
-    <div class="shell">
-      <div class="sec-head">
-        <p class="script">Where they are now</p>
-        <h2>Our students get placed in</h2>
-      </div>
-      <div class="logos">
-        <span>Airline 1 — replace</span>
-        <span>Airline 2 — replace</span>
-        <span>Airline 3 — replace</span>
-        <span>Airline 4 — replace</span>
-        <span>Airline 5 — replace</span>
-        <span>Airline 6 — replace</span>
-      </div>
-      <p>Name only carriers your graduates actually joined, and keep the evidence on file. This
-        row is the most persuasive thing on the page and only you have the real list. Aviation
-        Dreamz is not affiliated with the airlines named here.</p>
-    </div>
-  </section>
-
-  <!-- ========== TESTIMONIALS ========== -->
-  <section class="band-tint">
-    <div class="shell">
-      <div class="sec-head">
-        <p class="script">In their words</p>
-        <h2>From our students</h2>
-        <p>Placeholders. Replace with real quotes, real names and real airlines — with each
-          student's written permission.</p>
-      </div>
-      <div class="quotes">
-        <figure class="quote">
-          <blockquote>"I'd applied twice on my own and never got past the first stage. The third
-            time I walked in knowing exactly what the room wanted."</blockquote>
-          <div class="quote-who">
-            <span class="av"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F0E0C" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.8 3.2-6 7-6s7 2.2 7 6"/></svg></span>
-            <span><b>[Student name]</b><span>Cabin crew, [airline]</span></span>
-          </div>
-        </figure>
-        <figure class="quote">
-          <blockquote>"The grooming and English sessions changed how I carry myself, not just how
-            I answer questions. That is what the interview picked up on."</blockquote>
-          <div class="quote-who">
-            <span class="av"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F0E0C" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.8 3.2-6 7-6s7 2.2 7 6"/></svg></span>
-            <span><b>[Student name]</b><span>Cabin crew, [airline]</span></span>
-          </div>
-        </figure>
-        <figure class="quote">
-          <blockquote>"I joined with no experience and very little confidence. The mock assessment
-            day was harder than the real one, which is exactly why I passed it."</blockquote>
-          <div class="quote-who">
-            <span class="av"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F0E0C" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.8 3.2-6 7-6s7 2.2 7 6"/></svg></span>
-            <span><b>[Student name]</b><span>Cabin crew, [airline]</span></span>
-          </div>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== WHAT YOU LEARN ========== -->
-  <section id="learn">
-    <div class="shell">
-      <div class="sec-head">
-        <p class="script">What you learn</p>
-        <h2>The job first, the interview second</h2>
-      </div>
-      <div class="learn">
-        <div>
-          <h3>In the cabin</h3>
-          <p>The work, taught from no experience</p>
-          <ul>
-            <li>Safety and emergency procedures in outline</li>
-            <li>Door and slide operation, armed and disarmed</li>
-            <li>Evacuation commands, shouted properly</li>
-            <li>Fire, smoke and oxygen equipment</li>
-            <li>First aid and in-flight medical basics</li>
-            <li>Galley, trolley and meal service flow</li>
-            <li>Difficult passengers, delays and diversions</li>
-            <li>Crew roles, rosters, layovers and fatigue</li>
-          </ul>
-        </div>
-        <div>
-          <h3>In the room</h3>
-          <p>What the assessment day asks for</p>
-          <ul>
-            <li>The CV format that clears the screen</li>
-            <li>Application photos shot to standard</li>
-            <li>Aviation English and PA delivery</li>
-            <li>Grooming, uniform and the reach test</li>
-            <li>Group exercises, marked to the rubric</li>
-            <li>Competency answers in STAR structure</li>
-            <li>A full mock day, with written feedback</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== ASSESSMENT DAY ========== -->
-  <section class="band-blue">
-    <div class="shell">
-      <div class="sec-head">
-        <p class="script">The day itself</p>
-        <h2>Five stages, and we train for each one</h2>
-        <p>This is the order airlines run it in, and roughly where candidates drop out.</p>
-      </div>
-      <div class="stages">
-        <div class="stage"><b>01</b><h3>CV screen</h3><p>Sifted by software before a human sees it.</p></div>
-        <div class="stage"><b>02</b><h3>English test</h3><p>Written, then spoken. The biggest cut of the day.</p></div>
-        <div class="stage"><b>03</b><h3>Group task</h3><p>With strangers, while assessors take notes.</p></div>
-        <div class="stage"><b>04</b><h3>Interview</h3><p>Competency questions, under time pressure.</p></div>
-        <div class="stage"><b>05</b><h3>Final checks</h3><p>Reach, swim, medical, documents, offer.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== ABOUT ========== -->
-  <section class="band-tint" id="about">
-    <div class="shell about">
-      <div class="about-shot">
-        <!-- REPLACE: <img src="fowzia-shaikh.jpg" alt="Fowzia Shaikh" /> -->
-        <div class="shot">
-          <span class="shot-frame">
-            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#0F0E0C" stroke-width="1.5" aria-hidden="true">
-              <rect x="2.5" y="5.5" width="19" height="14" rx="2.5"/>
-              <circle cx="12" cy="12.5" r="3.6"/>
-              <path d="M8 5.5l1.4-2h5.2l1.4 2"/>
-            </svg>
-          </span>
-          <span class="shot-note">Photo slot · Fowzia Shaikh<br />portrait, 4:5</span>
-        </div>
-      </div>
-      <div class="about-body">
-        <p class="script">About the institute</p>
-        <h2>Thirty years, one proprietor, five thousand careers</h2>
-        <p>Aviation Dreamz is a premier institute for airline careers, established in 1996. The
-          institute is led by its proprietor, Fowzia Shaikh, under whose guidance it has become a
-          well-known and respected name in the aviation sector.</p>
-        <p>More than 5,000 students have been placed with domestic and international airlines in
-          that time — a record built one interview at a time, which is also how we teach.</p>
-        <ul class="about-facts">
-          <li>Established <b>1996</b></li>
-          <li><b>30</b> years' experience</li>
-          <li><b>5,000+</b> placed</li>
-          <li>Proprietor <b>Fowzia Shaikh</b></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== FAQ ========== -->
-  <section id="faq">
-    <div class="shell">
-      <div class="sec-head">
-        <p class="script">Questions</p>
-        <h2>Asked and answered honestly</h2>
-      </div>
-      <div class="faq">
-        <details>
-          <summary>Do you guarantee a job?</summary>
-          <p class="ans">No — and be careful with anyone who does. The hiring decision belongs to
-            the airline and depends on their vacancies as much as on you. What we can point to is
-            the record: more than 5,000 students placed since 1996 with domestic and international
-            carriers. Our part is getting you genuinely ready and putting you in front of the
-            right openings.</p>
-        </details>
-        <details>
-          <summary>Do I need any experience?</summary>
-          <p class="ans">None. Most people arrive from school, college, retail or hospitality. You
-            need enough English to hold a simple conversation — if you can read this page, you can
-            start — and the counselling session tells you where you stand before you commit to
-            anything.</p>
-        </details>
-        <details>
-          <summary>Am I eligible? Age, height, schooling?</summary>
-          <p class="ans">Most airlines require you to be 18 or over, and to reach roughly 212 cm
-            flat-footed or on tiptoes depending on the carrier. Most also expect you to swim
-            unaided and to have no tattoos visible in uniform. Height is the one thing training
-            cannot change, so we check it early and tell you honestly which carriers fit.</p>
-        </details>
-        <details>
-          <summary>How long is the course and what does it cost?</summary>
-          <p class="ans">REPLACE THIS with your real course length, fee structure and any
-            instalment option. Nothing on this page currently states either, and it is the first
-            thing a serious enquiry looks for.</p>
-        </details>
-        <details>
-          <summary>What if I'm rejected at an assessment day?</summary>
-          <p class="ans">Many people are, the first time — plenty of working crew were turned down
-            once before they were hired. Come back and tell us which stage lost it. That is the
-            most useful information either of us can have, and it changes what we work on before
-            you apply again.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== FINAL CTA ========== -->
-  <section class="band-blue final">
-    <div class="shell">
-      <p class="script">Your turn.</p>
-      <h2>Book a free counselling session</h2>
-      <p>Come and ask us anything. No fee, no deposit, and an honest answer about whether this is
-        your year.</p>
-      <a class="btn btn-blue" href="#enquire">Request a callback</a>
-    </div>
-  </section>
-
+  </div>
+</section>
 </main>
 
 <footer class="ftr">
-  <div class="shell">
-    <div class="ftr-grid">
+  <div class="wrap">
+    <div class="ftr-top">
       <div>
-        <div class="ftr-mark">
-          <img src="ad.jpeg" alt="" width="42" height="42" />
-          <b>Aviation Dreamz</b>
-        </div>
-        <p>A premier institute for airline careers, established 1996. Over 5,000 students placed
-          with domestic and international airlines.</p>
-        <p style="margin-top:11px;font-size:0.8125rem">Proprietor: Fowzia Shaikh</p>
+        <div class="ftr-name">Aviation Dreamz</div>
+        <p>Cabin crew and airline career training since 1996. More than 5,000 students placed
+          with domestic and international airlines. Proprietor, Fowzia Shaikh.</p>
       </div>
       <div>
-        <h4>THE COURSE</h4>
+        <h4>The institute</h4>
         <ul>
-          <li><a href="#course">Cabin crew training</a></li>
-          <li><a href="#learn">What you learn</a></li>
-          <li><a href="#placements">Placements</a></li>
-          <li><a href="#faq">FAQs</a></li>
+          <li><a href="course.html">The course</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="placements.html">Placements</a></li>
         </ul>
       </div>
       <div>
-        <h4>CONTACT</h4>
+        <h4>Enquiries</h4>
+        <ul>
+          <li><a href="faq.html">Questions</a></li>
+          <li><a href="contact.html">Book counselling</a></li>
+          <li><a href="contact.html">Visit us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
         <ul>
           <li><a href="tel:+10000000000">+1 000 000 0000</a></li>
           <li><a href="mailto:hello@aviationdreamz.com">hello@aviationdreamz.com</a></li>
           <li>[Street address], [City]</li>
-          <li><a href="#enquire">Book free counselling</a></li>
         </ul>
       </div>
     </div>
     <div class="ftr-base">
-      <span>© 2026 Aviation Dreamz · established 1996</span>
-      <span>A training institute. We do not guarantee employment, and we are not affiliated with
-        any airline.</span>
+      <span>© 2026 Aviation Dreamz. Established 1996.</span>
+      <span>A training institute. We do not guarantee employment and are not affiliated with any airline.</span>
     </div>
   </div>
 </footer>
 
-<div class="sticky">
-  <p>Thirty years · 5,000+ placed</p>
-  <a class="btn btn-white" href="#enquire">Book free counselling</a>
-</div>
-
-<script>
-(function () {
-  "use strict";
-
-  /* ----------------------------------------------------------
-     Reveal the sticky call-to-action once the hero is behind us.
-     ---------------------------------------------------------- */
-  var sticky = document.querySelector(".sticky");
-  var hero = document.querySelector(".hero");
-  var queued = false;
-
-  function syncSticky() {
-    queued = false;
-    sticky.classList.toggle("show", window.scrollY > hero.offsetHeight * 0.65);
-  }
-  window.addEventListener("scroll", function () {
-    if (!queued) { queued = true; requestAnimationFrame(syncSticky); }
-  }, { passive: true });
-  syncSticky();
-
-  var form = document.getElementById("enquiryForm");
-  var status = document.getElementById("status");
-
-  var checks = [
-    { wrap: "f-name",  input: "name",  test: function (v) { return v.trim().length > 1; } },
-    { wrap: "f-phone", input: "phone", test: function (v) { return v.replace(/[^\d]/g, "").length >= 7; } },
-    { wrap: "f-email", input: "email", test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
-      /* an empty field has no malformed address to complain about */
-      message: function (v) {
-        return v.trim() === ""
-          ? "Please add an email we can reply to."
-          : "That address is missing an @ or a domain.";
-      } },
-    { wrap: "f-city",  input: "city",  test: function (v) { return v.trim().length > 1; } },
-    { wrap: "f-stage", input: "stage", test: function (v) { return v !== ""; } }
-  ];
-
-  checks.forEach(function (c) {
-    var el = document.getElementById(c.input);
-    el.addEventListener("input", function () { clear(c); });
-    el.addEventListener("change", function () { clear(c); });
-  });
-
-  function clear(c) {
-    var wrap = document.getElementById(c.wrap);
-    var el = document.getElementById(c.input);
-    if (wrap.classList.contains("invalid") && c.test(el.value)) {
-      wrap.classList.remove("invalid");
-      el.removeAttribute("aria-invalid");
-    }
-  }
-
-  var consent = document.getElementById("consent");
-  consent.addEventListener("change", function () {
-    if (consent.checked) { document.getElementById("f-consent").classList.remove("invalid"); }
-  });
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var bad = [];
-
-    checks.forEach(function (c) {
-      var wrap = document.getElementById(c.wrap);
-      var el = document.getElementById(c.input);
-      if (c.test(el.value)) {
-        wrap.classList.remove("invalid");
-        el.removeAttribute("aria-invalid");
-      } else {
-        wrap.classList.add("invalid");
-        el.setAttribute("aria-invalid", "true");
-        if (c.message) { wrap.querySelector(".err").textContent = c.message(el.value); }
-        bad.push(c);
-      }
-    });
-
-    /* consent is a legal requirement for contacting them, so it blocks too */
-    var consentBad = !consent.checked;
-    document.getElementById("f-consent").classList.toggle("invalid", consentBad);
-
-    if (bad.length || consentBad) {
-      if (bad.length && consentBad) {
-        status.textContent = "Please complete the highlighted fields and tick the consent box.";
-      } else if (consentBad) {
-        status.textContent = "Please tick the consent box so we're allowed to call you.";
-      } else {
-        status.textContent = bad.length === 1
-          ? "One field needs your attention."
-          : bad.length + " fields need your attention.";
-      }
-      status.className = "form-status show";
-      (bad.length ? document.getElementById(bad[0].input) : consent).focus();
-      return;
-    }
-
-    status.className = "form-status";
-    submitForm(new FormData(form));
-  });
-
-  /* ----------------------------------------------------------
-     NOT WIRED UP YET.
-     Replace the body of this function with a fetch() to your form
-     handler (Netlify Forms, Formspree, or your own endpoint) and
-     call showSent() only on a successful response.
-     ---------------------------------------------------------- */
-  function submitForm(data) {
-    showSent(
-      "NAME   " + data.get("name") + "\n" +
-      "PHONE  " + data.get("phone") + "\n" +
-      "CITY   " + data.get("city") + "\n" +
-      "STAGE  " + data.get("stage")
-    );
-  }
-
-  function showSent(recap) {
-    document.getElementById("recap").textContent = recap;
-    form.classList.add("done");
-    form.scrollIntoView({ block: "center" });
-  }
-})();
-</script>
+<script src="site.js"></script>
 </body>
 </html>

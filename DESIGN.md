@@ -1,5 +1,39 @@
 # Aviation Dreamz — Design Direction (built)
 
+> **Current state (Sept 2026) — read this first.** The site is now **multi-page**
+> (home, course, about, placements, questions, contact) with shared `styles.css` and
+> `site.js`. The identity is **the crew uniform**: navy, maroon and cream, as the
+> client asked.
+>
+> - **Palette:** cream page `#EFE7D6`, card stock `#F8F3E9`, navy `#15223F`, maroon
+>   `#7A1F2B`, rule `#D5C8AE`. **Navy is the ink** — there is no black on the site.
+>   Maroon marks links, the current page and the pass destination.
+> - **Type:** one family, **Archivo**, used by width. Expanded (125%) and bold for
+>   headings, like an airline name on a fuselage; normal width for reading; 85% for the
+>   small labels on facts, forms and the pass. Sentence case everywhere — no all-caps
+>   labels, no eyebrow above headings. Caslon/Jost were dropped because cream plus a
+>   serif display read as a generic template.
+> - **Signature (the one bold thing):** the home hero is a **boarding pass**, *From: No
+>   experience → To: Cabin crew*, with the confirmed facts as its fields and the navy
+>   tear-off stub as the booking link. "Cabin crew" settles once on load like a
+>   departures board (`site.js`; skipped under reduced motion). Keep everything else quiet.
+> - **Cheatline:** navy band + maroon pinstripe (`.cheat`) under the header and above
+>   the closing CTA; the navy footer is the band with the pinstripe above it. Nowhere else.
+> - **The colours must be visible, not just present** (client's words: keep the navy
+>   and maroon "and it should be visible"). So: every page opens on a **navy band**
+>   (home hero, inner-page `.opening`), the closing call to action is a **maroon band**,
+>   buttons and the pass stub are maroon, and cream is the reading surface between
+>   bands. Don't drift back to cream-with-navy-text only.
+> - Lists and fact tables start with a 3px maroon rule and use 1px sand rules between rows.
+>   No shadows, no gradients as decoration.
+> - The home hero lost its background-film slot; the training-cabin panorama below the
+>   intro is now the first photograph.
+>
+> Photo and video slots are flat `.media` panels with a corner note and a real caption.
+> The sections below on the sky/red colour table, Barlow/IBM Plex type, the single-page
+> structure and the cabin-window hero describe earlier versions and are **superseded**.
+> The content, honesty and confirmed-facts sections still apply.
+
 **Subject:** Aviation Dreamz — a premier institute for airline careers, established
 1996, led by proprietor Fowzia Shaikh, with 5,000+ students placed. Cabin crew is the
 training focus.
