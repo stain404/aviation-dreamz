@@ -170,6 +170,19 @@ figcaption { font-size: 0.875rem; color: var(--ink-3); margin-top: 12px; line-he
    side like a contact sheet; on narrow screens the row scrolls sideways
    rather than stacking five tall videos down the page. */
 .r-reel { --r: 9 / 16; }
+
+/* The proprietor prefers not to be photographed, so her place on the
+   About page is a signed note on a navy panel, the same shape as the
+   portrait it replaces. */
+.signed {
+  margin: 0; aspect-ratio: 4 / 5; padding: clamp(28px, 4vw, 48px);
+  display: flex; flex-direction: column; justify-content: space-between; gap: 32px;
+  border-top: 4px solid var(--maroon);
+}
+.signed blockquote { margin: 0; }
+.signed figcaption { margin: 0; font-size: 0.9375rem; color: var(--on-navy-2); }
+.signed figcaption b { display: block; color: #fff; font-weight: 700; font-stretch: 112%; font-size: 1.125rem; }
+@media (max-width: 860px) { .signed { aspect-ratio: auto; } }
 .media.fit > video { object-fit: contain; }
 .reels { display: grid; grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); }
 .reels figcaption b { display: block; font-weight: 700; color: var(--navy); }
