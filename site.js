@@ -24,7 +24,7 @@
 
   /* ----------------------------------------------------------
      Numbered photo and video slots. Each points at images/N.jpeg
-     or images/video-N.mp4; until that file exists, drop the
+     or images/N.mp4; until that file exists, drop the
      element so the numbered placeholder shows instead.
      ---------------------------------------------------------- */
   Array.prototype.forEach.call(document.querySelectorAll(".media > img, .media > video"), function (el) {

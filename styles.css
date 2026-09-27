@@ -142,7 +142,7 @@ img, video, iframe { display: block; max-width: 100%; }
 .navy .media .note { color: rgba(239,231,214,0.6); }
 /* a real file covers its placeholder; site.js removes the img or video
    when the file isn't in images/ yet, which brings the note back */
-.media > :is(img, video) ~ :is(.note, .playmark) { display: none; }
+.media > :is(img, video, iframe) ~ :is(.note, .playmark) { display: none; }
 /* crop from nearer the top, so heads stay in when a photo is cropped */
 .media > img { object-position: 50% 28%; }
 /* a portrait photo in a landscape slot (or the reverse) is shown whole,
@@ -165,6 +165,23 @@ figcaption { font-size: 0.875rem; color: var(--ink-3); margin-top: 12px; line-he
 .navy figcaption { color: var(--on-navy-2); }
 .r-wide { --r: 16 / 9; } .r-pano { --r: 21 / 9; } .r-port { --r: 4 / 5; } .r-sq { --r: 1 / 1; } .r-43 { --r: 4 / 3; }
 @media (max-width: 600px) { .r-pano { --r: 4 / 3; } }
+
+/* Vertical phone videos: graduates recording themselves. Shown side by
+   side like a contact sheet; on narrow screens the row scrolls sideways
+   rather than stacking five tall videos down the page. */
+.r-reel { --r: 9 / 16; }
+.media.fit > video { object-fit: contain; }
+.reels { display: grid; grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); }
+.reels figcaption b { display: block; font-weight: 700; color: var(--navy); }
+.navy .reels figcaption b { color: #fff; }
+@media (max-width: 860px) {
+  .reels {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(62vw, 250px);
+    overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px;
+    margin-right: calc(-1 * var(--gut)); padding-right: var(--gut);
+  }
+  .reels > figure { scroll-snap-align: start; }
+}
 
 /* ---------- home hero: the boarding pass ---------- */
 .hero { padding-block: clamp(56px, 8vw, 112px) clamp(64px, 9vw, 128px); }

@@ -1,26 +1,23 @@
-Put photos and videos in this folder with exactly these names.
+Photos and videos for the site. Files already here are placed by what they show.
 Shape in brackets: 21:9 = very wide, 16:9 = wide, 3:2 = landscape, 4:5 = portrait.
 
-HOME
-  1.jpeg        Students in uniform in the training cabin (21:9)
-  video-1.mp4   A training day, 60-90 seconds (16:9)
+ALREADY ON THE SITE
+  1.jpeg   Batch of students (landscape)        Home
+  2.jpeg   Batch of students (landscape)        The course, top of page
+  4.jpeg   Batch of students (portrait)         About, "The institute"
+  7.jpeg   Graduate in uniform with luggage     Home, beside the introduction
+  3, 5, 6, 8, 9, 10.jpeg   Graduates in uniform  Placements, "Our graduates"
+  1, 2, 4.mp4   Graduate videos                 Home, "In their own words"
+  1-5.mp4       Graduate videos                 Placements, "Graduate stories"
+  Names and airlines for all of these are still [placeholders].
 
-THE COURSE
-  2.jpeg        Evacuation drill at the training door (21:9)
-  3.jpeg        Grooming session (3:2)
-  4.jpeg        Galley / trolley service practice (4:5)
-  5.jpeg        Mock interview (4:5)
-  video-2.mp4   Cabin announcement practice (16:9)
-
-ABOUT
-  6.jpeg        Fowzia Shaikh, portrait (4:5)
-  7.jpeg        (not used at the moment)
-  19.jpeg       LANDSCAPE: reception or main classroom (21:9, very wide)
-  8.jpeg        Training cabin (4:5)
-  9.jpeg        Grooming studio (4:5)
-  10.jpeg       A graduating batch (4:5)
-  video-3.mp4   Proprietor's welcome, 1-2 minutes (16:9)
-
-PLACEMENTS
-  11.jpeg - 18.jpeg   Eight graduates in airline uniform (4:5)
-  video-4.mp4 - video-6.mp4   Three graduate interviews, 60-90 seconds (16:9)
+STILL NEEDED (add with exactly these names and they appear automatically)
+  11.jpeg   Fowzia Shaikh, portrait (4:5)                         About
+  12.jpeg   The institute's reception or main classroom (21:9)    About
+  13.jpeg   Training cabin (4:5)                                  About
+  14.jpeg   Grooming studio (4:5)                                 About
+  15.jpeg   Grooming session (3:2)                                The course
+  16.jpeg   Galley / trolley service practice (4:5)               The course
+  17.jpeg   Mock interview (4:5)                                  The course
+  6.mp4     Proprietor's welcome, 1-2 minutes (16:9)              About
+  7.mp4     Cabin announcement practice (16:9)                    The course
