@@ -5,6 +5,7 @@ ALREADY ON THE SITE
   1.jpeg   Batch of students (landscape)        Home
   2.jpeg   Batch of students (landscape)        The course, top; About, "Our students"
   4.jpeg   Batch of students (portrait)         About, "Our students"
+  11.jpeg  Batch of students (portrait)         About, "Our students"
   3, 5, 6, 7, 8, 10.jpeg   Graduates in uniform  About, "Our students"
   3, 5, 6, 8, 9, 10.jpeg   Graduates in uniform  Placements, "Our graduates"
   1.mp4         Graduate video                  Home, "In their own words"
