@@ -383,9 +383,11 @@ section { padding-block: clamp(72px, 10vw, 136px); }
 
 /* closing call to action, under its own cheatline */
 /* closing call to action: a maroon band */
-.closing .wrap > div { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(28px, 6vw, 96px); align-items: end; }
-.closing p { color: rgba(239,231,214,0.85); margin-top: 20px; max-width: 32em; }
-.closing .acts { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+section.closing { padding-block: clamp(40px, 5vw, 64px); }
+.closing .wrap > div { display: grid; grid-template-columns: 1fr auto; gap: clamp(24px, 5vw, 72px); align-items: center; }
+.closing h2 { font-size: clamp(1.5rem, 2.8vw, 2.25rem); }
+.closing p { color: rgba(239,231,214,0.85); margin-top: 12px; max-width: 34em; font-size: 1rem; }
+.closing .acts { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
 .closing .acts small { font-size: 0.9375rem; color: rgba(239,231,214,0.85); }
 .closing .acts small a { color: #fff; font-weight: 600; text-decoration: none; }
 @media (max-width: 860px) { .closing .wrap > div { grid-template-columns: 1fr; } }
